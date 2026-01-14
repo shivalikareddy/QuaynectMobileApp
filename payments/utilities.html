@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities - Residency App</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Utilities</h2>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search utilities or bills">
+                <ion-icon name="mic-outline" class="mic-icon"></ion-icon>
+            </div>
+        </div>
+
+        <!-- Monthly Overview Card -->
+        <section class="section-container">
+            <div class="monthly-overview-card">
+                <h3>Monthly Overview</h3>
+                
+                <div class="bill-list">
+                    <div class="bill-line-item">
+                        <div class="bill-info">
+                            <span class="bill-name">HydroOne Bill</span>
+                            <span class="bill-date">November 29, 2025</span>
+                        </div>
+                        <div class="bill-price">
+                            <span class="status-dot red"></span>
+                            <span class="amount">$85.78</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bill-line-item">
+                        <div class="bill-info">
+                            <span class="bill-name">SquareOne Insurance</span>
+                            <span class="bill-date">November 29, 2025</span>
+                        </div>
+                        <div class="bill-price">
+                            <span class="status-dot green"></span>
+                            <span class="amount">$21.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-summary">
+                    <div class="total-row">
+                        <span class="total-label">Total Utilities:</span>
+                        <span class="total-amount">$107.77</span>
+                    </div>
+                    <div class="sub-total-row">
+                        <span>Paid: $21.99</span>
+                        <span>Due: $85.78</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Your Services -->
+        <section class="section-container">
+            <h3>Your Services</h3>
+            <div class="service-action-list">
+                <!-- Hydro -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-blue">
+                        <ion-icon name="water-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Hydro</h3>
+                        <p class="card-subtext">HydroOne account active</p>
+                    </div>
+                    <div class="card-action">
+                        <i class="fas fa-chevron-right action-chevron"></i>
+                    </div>
+                </div>
+
+                <!-- Wi-Fi -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-purple">
+                        <ion-icon name="wifi-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Wi-Fi</h3>
+                        <p class="card-subtext">Gigabit fiber enabled</p>
+                    </div>
+                    <div class="card-action">
+                        <i class="fas fa-chevron-right action-chevron"></i>
+                    </div>
+                </div>
+
+                <!-- Insurance -->
+                <div class="service-action-item" id="insurance-pill">
+                    <div class="card-icon icon-purple">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Insurance</h3>
+                        <p class="card-subtext">SquareOne Policy #3829</p>
+                    </div>
+                    <div class="card-action">
+                        <i class="fas fa-chevron-right action-chevron"></i>
+                    </div>
+                </div>
+
+                <!-- Parking -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-indigo">
+                        <ion-icon name="car-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Parking</h3>
+                        <p class="card-subtext">Spot B-12 active</p>
+                    </div>
+                    <div class="card-action">
+                        <i class="fas fa-chevron-right action-chevron"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Payments -->
+        <section class="section-container">
+            <h3>Upcoming Payments</h3>
+            <div class="upcoming-list">
+                <div class="upcoming-card">
+                    <div class="upcoming-info">
+                        <span class="upcoming-name">HydroOne Bill</span>
+                        <span class="upcoming-date">December 29, 2025</span>
+                    </div>
+                    <div class="upcoming-amount">$85.78</div>
+                </div>
+                <div class="upcoming-card">
+                    <div class="upcoming-info">
+                        <span class="upcoming-name">Water/Waste Surcharge</span>
+                        <span class="upcoming-date">January 05, 2026</span>
+                    </div>
+                    <div class="upcoming-amount">$42.15</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questions? -->
+        <section class="section-container">
+            <h3>Questions?</h3>
+            <div class="questions-card">
+                <p>Feel free to get in touch if you have any questions - Our team is always happy to help.</p>
+                <div class="button-pills">
+                    <button class="blue-pill">quayside.billing@email.com</button>
+                    <button class="blue-pill">In Person</button>
+                    <button class="blue-pill">000-000-000</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

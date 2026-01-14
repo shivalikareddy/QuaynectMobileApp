@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - Residency App</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Maintenance</h2>
+            </div>
+            <div class="header-right">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search requests or receipts">
+                <ion-icon name="mic-outline" class="mic-icon"></ion-icon>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <section class="section-container">
+            <button class="liquid-glass-btn">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                New Service Request
+            </button>
+        </section>
+
+        <!-- Active Requests -->
+        <section class="section-container">
+            <h3>Active Requests</h3>
+            <div class="maintenance-card-list">
+                <div class="maintenance-request-card">
+                    <div class="request-header">
+                        <span class="request-id">REQ-9821</span>
+                        <span class="status-badge progress">In Progress</span>
+                    </div>
+                    <div class="request-body">
+                        <h4>Kitchen Sink Leaking</h4>
+                        <p>Kitchen faucet dripping even when fully turned off.</p>
+                    </div>
+                    <div class="request-footer">
+                        <div class="footer-item">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span>Jan 12, 10:00 AM</span>
+                        </div>
+                        <div class="footer-item">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Assignee: John D.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paid Services & Receipts -->
+        <section class="section-container">
+            <h3>Past Services & Receipts</h3>
+            <div class="service-action-list">
+                <!-- AC Filter -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-blue">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">AC Filter Replacement</h3>
+                        <p class="card-subtext">Dec 15, 2025 • Paid $45.00</p>
+                    </div>
+                    <div class="card-action">
+                        <ion-icon name="download-outline" class="action-chevron"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- Paint -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-purple">
+                        <ion-icon name="color-palette-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Wall Paint Touch-up</h3>
+                        <p class="card-subtext">Nov 28, 2025 • Paid $120.00</p>
+                    </div>
+                    <div class="card-action">
+                        <ion-icon name="download-outline" class="action-chevron"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- Lock -->
+                <div class="service-action-item">
+                    <div class="card-icon icon-indigo">
+                        <ion-icon name="construct-outline"></ion-icon>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Lock Repair (Emergency)</h3>
+                        <p class="card-subtext">Oct 12, 2025 • Paid $85.00</p>
+                    </div>
+                    <div class="card-action">
+                        <ion-icon name="download-outline" class="action-chevron"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

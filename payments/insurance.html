@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance - Residency App</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Insurance</h2>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search insurance policies">
+                <ion-icon name="mic-outline" class="mic-icon"></ion-icon>
+            </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <section class="section-container">
+            <h3>Price Breakdown</h3>
+            <div class="breakdown-card-container">
+                <div class="breakdown-card">
+                    <div class="breakdown-body">
+                        <div class="breakdown-items">
+                            <div class="breakdown-item">
+                                <span class="item-label">Base Premium:</span>
+                                <span class="item-value">$72.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Property Coverage:</span>
+                                <span class="item-value">$28.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Contents Coverage:</span>
+                                <span class="item-value">$18.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Liability Coverage:</span>
+                                <span class="item-value">$12.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Natural Disaster Coverage:</span>
+                                <span class="item-value">$10.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="item-label">Administrative Fee:</span>
+                                <span class="item-value">$15.00</span>
+                            </div>
+                        </div>
+                        <div class="breakdown-footer">
+                            <span class="total-label">Total Monthly Cost:</span>
+                            <span class="total-value">$155.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="breakdown-actions">
+                    <button class="action-btn primary">Pay Now</button>
+                    <button class="action-btn secondary">Manage</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Previous Payments -->
+        <section class="section-container">
+            <h3>Previous Payments</h3>
+            <div class="payments-list">
+                <div class="payment-card history-item">
+                    <div class="payment-info">
+                        <span class="payment-name">SquareOne Insurance</span>
+                        <span class="payment-date">November 29, 2025</span>
+                    </div>
+                    <div class="payment-amount">$155.00</div>
+                </div>
+                <div class="payment-card history-item">
+                    <div class="payment-info">
+                        <span class="payment-name">SquareOne Insurance</span>
+                        <span class="payment-date">October 29, 2025</span>
+                    </div>
+                    <div class="payment-amount">$155.00</div>
+                </div>
+                <div class="payment-card">
+                    <div class="payment-info">
+                        <span class="payment-name">SquareOne Insurance</span>
+                        <span class="payment-date">September 29, 2025</span>
+                    </div>
+                    <div class="payment-amount">$155.00</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Provider Information -->
+        <section class="section-container">
+            <h3>Provider Information</h3>
+            <div class="provider-card">
+                <div class="provider-info">
+                    <span class="provider-name">Square One Insurance Services</span>
+                    <span class="provider-sub">Click for more information</span>
+                </div>
+                <ion-icon name="arrow-forward-outline" class="provider-arrow"></ion-icon>
+            </div>
+        </section>
+
+        <!-- Questions? -->
+        <section class="section-container">
+            <h3>Questions?</h3>
+            <div class="questions-card">
+                <p>Feel free to get in touch if you have any questions - Our team is always happy to help.</p>
+                <div class="button-pills">
+                    <button class="blue-pill">quayside.billing@email.com</button>
+                    <button class="blue-pill">In Person</button>
+                    <button class="blue-pill">000-000-000</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

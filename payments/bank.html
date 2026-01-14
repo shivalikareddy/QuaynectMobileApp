@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Payment - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Bank account</h2>
+            </div>
+            <div class="header-right">
+                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+            </div>
+        </header>
+
+        <!-- Current Amount Card -->
+        <section class="section-container">
+            <div class="balance-summary-card" style="background: white; border-radius: 24px; padding: 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02);">
+                <span style="color: var(--text-secondary); font-size: 14px; font-weight: 500;">Amount Due</span>
+                <h1 style="font-size: 32px; font-weight: 700; margin: 8px 0;">$3,000.00</h1>
+                <p style="color: #10B981; font-size: 13px; font-weight: 600;">Due on Jan 01, 2026</p>
+            </div>
+        </section>
+
+        <!-- Linked Account -->
+        <section class="section-container">
+            <h3>Pay With</h3>
+            <div class="account-picker" style="background: white; border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; border: 2px solid #3B82F6;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: #EEF2FF; display: flex; align-items: center; justify-content: center; color: #3B82F6;">
+                        <ion-icon name="business-outline" style="font-size: 24px;"></ion-icon>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 16px; margin-bottom: 2px;">Chase Checking</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary);">**** 8829 • Balance: $12,450.00</p>
+                    </div>
+                </div>
+                <ion-icon name="checkmark-circle" style="font-size: 24px; color: #3B82F6;"></ion-icon>
+            </div>
+        </section>
+
+        <!-- Form / CTA -->
+        <section class="section-container" style="margin-top: 40px;">
+            <p style="text-align: center; color: var(--text-secondary); font-size: 12px; margin-bottom: 20px; padding: 0 20px;">
+                By clicking "Pay Now", you authorize Quaynect to initiate a one-time electronic fund transfer from your linked account.
+            </p>
+            <button class="liquid-glass-btn" id="confirm-payment-btn">
+                Confirm Payment
+            </button>
+        </section>
+
+        <!-- Message/Loading state (hidden) -->
+        <div id="payment-success-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px;">
+            <div style="width: 80px; height: 80px; background: #dbeafe; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                <ion-icon name="checkmark" style="font-size: 48px;"></ion-icon>
+            </div>
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 12px;">Payment Successful</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px;">Your payment of $3,000.00 has been processed successfully. Receipt #QT-99281.</p>
+            <button class="liquid-glass-btn" onclick="window.location.href='index.html'">Done</button>
+        </div>
+
+    </div>
+    <script>
+        document.getElementById('confirm-payment-btn').addEventListener('click', function() {
+            this.innerHTML = '<ion-spinner name="crescent"></ion-spinner> Processing...';
+            this.style.opacity = '0.7';
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                document.getElementById('payment-success-overlay').style.display = 'flex';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

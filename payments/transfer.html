@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Transfer Details - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Bank Transfer</h2>
+            </div>
+            <div class="header-right">
+                <ion-icon name="share-outline"></ion-icon>
+            </div>
+        </header>
+
+        <!-- Instructions -->
+        <section class="section-container">
+            <div style="background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 20px; padding: 20px; display: flex; gap: 16px; margin-bottom: 24px;">
+                <ion-icon name="information-circle" style="font-size: 24px; color: #0284C7; flex-shrink: 0;"></ion-icon>
+                <div>
+                    <h4 style="color: #0369A1; margin-bottom: 4px;">Transfer Instructions</h4>
+                    <p style="color: #075985; font-size: 13px;">Please use your Unit Number (#1140) as the reference when making the transfer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dest Details -->
+        <section class="section-container">
+            <h3 style="margin-bottom: 16px;">Receiving Bank Details</h3>
+            
+            <div class="details-list" style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 12px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Account Name</span>
+                        <span style="font-size: 16px; font-weight: 600;">Quayside Management Inc.</span>
+                    </div>
+                    <ion-icon name="copy-outline" style="color: #3B82F6;"></ion-icon>
+                </div>
+
+                <div style="border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 12px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Account Number</span>
+                        <span style="font-size: 16px; font-weight: 600;">004392810023</span>
+                    </div>
+                    <ion-icon name="copy-outline" style="color: #3B82F6;"></ion-icon>
+                </div>
+
+                <div style="border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 12px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Transit Number</span>
+                        <span style="font-size: 16px; font-weight: 600;">00291</span>
+                    </div>
+                    <ion-icon name="copy-outline" style="color: #3B82F6;"></ion-icon>
+                </div>
+
+                <div style="border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 12px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Bank Institution</span>
+                        <span style="font-size: 16px; font-weight: 600;">TD Canada Trust</span>
+                    </div>
+                    <ion-icon name="copy-outline" style="color: #3B82F6;"></ion-icon>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Step -->
+        <section class="section-container" style="margin-top: 40px;">
+            <button class="liquid-glass-btn" onclick="window.location.href='index.html'">
+                Done
+            </button>
+        </section>
+
+    </div>
+</body>
+</html>

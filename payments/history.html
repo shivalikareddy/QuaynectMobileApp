@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent History - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Back Header -->
+        <header class="back-header">
+            <div class="header-left" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                <h2>Rent History</h2>
+            </div>
+            <div class="header-right">
+                <ion-icon name="download-outline"></ion-icon>
+            </div>
+        </header>
+
+        <!-- Search History -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search by month or year...">
+                <ion-icon name="mic-outline" class="mic-icon"></ion-icon>
+            </div>
+        </div>
+
+        <!-- History List -->
+        <section class="section-container">
+            <div class="history-list" style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Nov 2025 -->
+                <div class="history-item" style="background: white; border-radius: 20px; padding: 18px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                            <ion-icon name="checkmark-circle-outline" style="font-size: 24px;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; margin-bottom: 2px;">Rent - November 2025</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary);">Paid Nov 01, 2025</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 15px; font-weight: 700; display: block;">$3,000.00</span>
+                        <a href="#" style="font-size: 12px; color: #3B82F6; text-decoration: none; font-weight: 600;">Receipt</a>
+                    </div>
+                </div>
+
+                <!-- Oct 2025 -->
+                <div class="history-item" style="background: white; border-radius: 20px; padding: 18px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                            <ion-icon name="checkmark-circle-outline" style="font-size: 24px;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; margin-bottom: 2px;">Rent - October 2025</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary);">Paid Oct 01, 2025</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 15px; font-weight: 700; display: block;">$3,000.00</span>
+                        <a href="#" style="font-size: 12px; color: #3B82F6; text-decoration: none; font-weight: 600;">Receipt</a>
+                    </div>
+                </div>
+
+                <!-- Sep 2025 -->
+                <div class="history-item" style="background: white; border-radius: 20px; padding: 18px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                            <ion-icon name="checkmark-circle-outline" style="font-size: 24px;"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; margin-bottom: 2px;">Rent - September 2025</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary);">Paid Sep 01, 2025</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 15px; font-weight: 700; display: block;">$3,000.00</span>
+                        <a href="#" style="font-size: 12px; color: #3B82F6; text-decoration: none; font-weight: 600;">Receipt</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More -->
+        <section class="section-container" style="text-align: center; margin-top: 24px;">
+            <button class="text-btn" style="color: #3B82F6; font-weight: 600; font-size: 14px; background: none; border: none;">Load 2024 Records</button>
+        </section>
+
+    </div>
+</body>
+</html>
