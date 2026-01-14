@@ -475,10 +475,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Universal Search Functionality ---
-    const searchInputs = document.querySelectorAll('.search-bar input, #headerSearchInput');
+    const searchInput = document.querySelector('.search-bar input');
 
-    searchInputs.forEach(input => {
-        input.addEventListener('input', (e) => {
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             
             // List of all possible searchable items across pages
@@ -520,30 +520,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     section.style.display = hasVisible ? '' : 'none';
                 }
             });
-        });
-    });
-
-    // --- Expanding Header Search Logic ---
-    const mainHeader = document.getElementById('mainHeader');
-    const openSearchBtn = document.getElementById('openSearchBtn');
-    const closeSearchBtn = document.getElementById('closeSearchBtn');
-    const headerSearchInput = document.getElementById('headerSearchInput');
-
-    if (openSearchBtn && mainHeader) {
-        openSearchBtn.addEventListener('click', () => {
-            mainHeader.classList.add('search-active');
-            setTimeout(() => {
-                headerSearchInput.focus();
-            }, 100);
-        });
-    }
-
-    if (closeSearchBtn && mainHeader) {
-        closeSearchBtn.addEventListener('click', () => {
-            mainHeader.classList.remove('search-active');
-            headerSearchInput.value = '';
-            // Trigger input event to clear results
-            headerSearchInput.dispatchEvent(new Event('input'));
         });
     }
 
@@ -718,4 +694,3 @@ document.querySelectorAll('.search-btn').forEach(btn => {
         }
     });
 });
-
