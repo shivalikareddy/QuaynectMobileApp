@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Key - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="icon-btn back-btn" onclick="history.back()">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                <h1>Digital Key</h1>
+            </div>
+            <div class="header-right">
+            </div>
+        </header>
 
+        <!-- Key Card UI -->
+        <section class="section-container key-page-content">
+            <div class="access-card-container">
+                <div class="access-card" id="digitalCard">
+                    <div class="card-logo">QUAYNECT</div>
+                    <div class="card-status-indicator">
+                        <div class="status-dot pulse"></div>
+                        <span>Active Access</span>
+                    </div>
+                    <div class="card-info">
+                        <p class="unit-number">Unit 1140</p>
+                        <p class="resident-name">Laura Morris</p>
+                    </div>
+                    <div class="card-visual-elements">
+                        <ion-icon name="key" class="key-watermark"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="unlock-action-area">
+                <button class="liquid-glass-btn" id="unlockBtn">
+                    <ion-icon name="bluetooth-outline"></ion-icon>
+                    Tap to Unlock
+                </button>
+                <p class="hint-text">Hold your device near the reader</p>
+            </div>
+
+            <div class="door-selector">
+                <div class="section-header">
+                    <h3>Select Door</h3>
+                </div>
+                <div class="door-list">
+                    <div class="door-item selected">
+                        <div class="door-icon">
+                            <ion-icon name="business-outline"></ion-icon>
+                        </div>
+                        <div class="door-info">
+                            <h4>Main Entrance</h4>
+                            <p>Front Lobby</p>
+                        </div>
+                        <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+                    </div>
+                    <div class="door-item">
+                        <div class="door-icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </div>
+                        <div class="door-info">
+                            <h4>My Apartment</h4>
+                            <p>Unit 1140</p>
+                        </div>
+                    </div>
+                    <div class="door-item">
+                        <div class="door-icon">
+                            <ion-icon name="car-outline"></ion-icon>
+                        </div>
+                        <div class="door-info">
+                            <h4>Parking Garage</h4>
+                            <p>Level P2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>
