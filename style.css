@@ -31,13 +31,13 @@ body {
     margin: 0 auto;
     background-color: var(--bg-color);
     min-height: 100vh;
-    padding-bottom: 80px; /* Space for bottom nav */
+    padding-bottom: calc(100px + env(safe-area-inset-bottom)); /* Dynamic space for home bar */
     position: relative;
 }
 
 /* Header */
 .main-header {
-    padding: 24px var(--padding-page) 16px;
+    padding: calc(24px + env(safe-area-inset-top)) var(--padding-page) 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -603,7 +603,7 @@ body {
 /* Bottom Nav */
 .bottom-nav {
     position: fixed;
-    bottom: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
     left: 20px;
     right: 20px;
     max-width: 440px;
@@ -652,7 +652,7 @@ body {
     justify-content: space-between;
     align-items: center;
     /* Increase top padding to simulate safe area status bar */
-    padding: 24px var(--padding-page) 16px;
+    padding: calc(24px + env(safe-area-inset-top)) var(--padding-page) 16px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -2423,4 +2423,5 @@ body {
 .btn-primary:active {
     opacity: 0.9;
 }
+
 
