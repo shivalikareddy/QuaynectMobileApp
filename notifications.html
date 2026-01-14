@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Quaynect</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="icon-btn back-btn" onclick="history.back()">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                <h1>Notifications</h1>
+            </div>
+            <div class="header-right">
+                <button class="text-btn">Clear All</button>
+            </div>
+        </header>
+
+        <!-- Notification List -->
+        <section class="section-container">
+            <div class="notification-tabs">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="updates">Updates</button>
+                <button data-filter="requests">Requests</button>
+            </div>
+
+            <div class="notif-wrapper">
+                <div class="group-header" data-group="new">NEW</div>
+                
+                <div class="notif-row" data-category="requests">
+                    <div class="avatar-col">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=100&h=100" class="notif-avatar">
+                    </div>
+                    <div class="content-col">
+                        <p class="notif-msg"><strong>Maintenance Team</strong> requested access to your unit for inspection. <span class="time">10m</span></p>
+                    </div>
+                    <div class="action-col">
+                        <button class="btn-primary approve-btn">Approve</button>
+                    </div>
+                </div>
+
+                <div class="notif-row" data-category="updates">
+                    <div class="avatar-col">
+                        <div class="notif-icon-circle purple">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-col">
+                        <p class="notif-msg"><strong>Package Hub:</strong> Your Amazon delivery is ready for pickup in Locker B12. <span class="time">2h</span></p>
+                    </div>
+                </div>
+
+                <div class="group-header" data-group="previous">PREVIOUS</div>
+
+                <div class="notif-row" data-category="updates">
+                    <div class="avatar-col">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&h=100" class="notif-avatar">
+                    </div>
+                    <div class="content-col">
+                        <p class="notif-msg"><strong>Alex Rivera</strong> from Unit 804 liked your post in the community forum. <span class="time">1d</span></p>
+                    </div>
+                </div>
+
+                <div class="notif-row" data-category="updates">
+                    <div class="avatar-col">
+                        <div class="notif-icon-circle green">
+                            <ion-icon name="card-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-col">
+                        <p class="notif-msg"><strong>Billing:</strong> Your recurring payment of $2,450.00 was successful. <span class="time">2d</span></p>
+                    </div>
+                </div>
+
+                <div class="notif-row" data-category="updates">
+                    <div class="avatar-col">
+                        <div class="notif-icon-circle orange">
+                            <ion-icon name="restaurant-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="content-col">
+                        <p class="notif-msg"><strong>Community:</strong> New menu items at the Rooftop Lounge are now available. <span class="time">3d</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='index.html'">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='services.html'">
+                <ion-icon name="construct-outline"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

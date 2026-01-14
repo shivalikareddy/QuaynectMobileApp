@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Quaynect</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="icon-btn back-btn" onclick="history.back()">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                <h1>All Services</h1>
+            </div>
+            <div class="header-right">
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search for a service...">
+                <ion-icon name="mic-outline" class="mic-icon"></ion-icon>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <section class="section-container">
+            <div class="grid-container" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                <!-- Digital Key -->
+                <div class="dashboard-card" data-id="card-key">
+                    <div class="icon-circle blue">
+                        <ion-icon name="key-outline"></ion-icon>
+                    </div>
+                    <h4>Digital Key</h4>
+                    <p>Tap to unlock</p>
+                </div>
+
+                <!-- Booking -->
+                <div class="dashboard-card" id="booking-card">
+                    <div class="icon-circle light-blue">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </div>
+                    <h4>Booking</h4>
+                    <p>Book pool deck</p>
+                </div>
+
+                <!-- Packages -->
+                <div class="dashboard-card" data-id="card-packages">
+                    <div class="icon-circle purple">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="badge">3</div>
+                    <h4>Packages</h4>
+                    <p>3 items ready</p>
+                </div>
+
+                <!-- Community -->
+                <div class="dashboard-card" id="community-card">
+                    <div class="icon-circle purple">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                    <h4>Community</h4>
+                    <p>Social, events & more</p>
+                </div>
+
+                <!-- Payments -->
+                <div class="dashboard-card" id="payments-card">
+                    <div class="icon-circle orange">
+                        <ion-icon name="card-outline"></ion-icon>
+                    </div>
+                    <h4>Payments</h4>
+                    <p>View history</p>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="dashboard-card" id="maintenance-card">
+                    <div class="icon-circle grey">
+                        <ion-icon name="construct-outline"></ion-icon>
+                    </div>
+                    <h4>Maintenance</h4>
+                    <p>Request service</p>
+                </div>
+
+                <!-- Utilities -->
+                <div class="dashboard-card" id="utilities-card">
+                    <div class="icon-circle light-blue">
+                        <ion-icon name="business-outline"></ion-icon>
+                    </div>
+                    <h4>Utilities</h4>
+                    <p>Hydro, Water, Gas</p>
+                </div>
+
+                <!-- Rewards / Points -->
+                <div class="dashboard-card" data-id="card-points">
+                    <div class="icon-circle gold">
+                         <ion-icon name="ribbon-outline"></ion-icon>
+                    </div>
+                    <h4>Points</h4>
+                    <p>2,450 points</p>
+                </div>
+
+                <!-- Insurance -->
+                <div class="dashboard-card" id="insurance-card">
+                    <div class="icon-circle green">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon>
+                    </div>
+                    <h4>Insurance</h4>
+                    <p>Resident policy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
