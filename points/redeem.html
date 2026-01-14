@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Redeemed - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .voucher-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-icon {
+            font-size: 64px;
+            color: #10B981;
+            margin-bottom: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+        }
+        .voucher-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .voucher-card::before, .voucher-card::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .voucher-card::before { left: -15px; }
+        .voucher-card::after { right: -15px; }
+
+        .voucher-header {
+            border-bottom: 2px dashed #f1f5f9;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+        }
+        .voucher-qr {
+            width: 180px;
+            height: 180px;
+            background: #f8fafc;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+        }
+        .voucher-code {
+            font-family: monospace;
+            font-size: 20px;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <button class="icon-btn back-btn" onclick="location.href='index.html'">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+                <h1>My Voucher</h1>
+            </div>
+        </header>
+
+        <section class="voucher-container">
+            <div class="success-icon">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Success!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px;">Your reward is ready to use.</p>
+
+            <div class="voucher-card">
+                <div class="voucher-header">
+                    <h3 id="voucher-title" style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 4px;">Free Guest Parking</h3>
+                    <p id="voucher-subtitle" style="font-size: 14px; color: #64748b;">Valid for 24 hours</p>
+                </div>
+
+                <div class="voucher-qr">
+                    <ion-icon name="qr-code-outline" style="font-size: 120px; color: #1e293b;"></ion-icon>
+                </div>
+                
+                <div class="voucher-code">QN-2938-L1A</div>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 12px; text-transform: uppercase; letter-spacing: 1px;">Show this to concierge</p>
+            </div>
+
+            <button class="redeem-btn" style="margin-top: 40px; width: 100%; height: 56px; border-radius: 18px; font-size: 14px;" onclick="location.href='index.html'">
+                Done
+            </button>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Simple logic to read parameters from URL if we wanted to make it dynamic
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const sub = urlParams.get('subtitle');
+        
+        if (title) document.getElementById('voucher-title').innerText = title;
+        if (sub) document.getElementById('voucher-subtitle').innerText = sub;
+    </script>
+</body>
+</html>

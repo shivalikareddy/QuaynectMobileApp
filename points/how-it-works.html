@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .help-section {
+            padding: 24px;
+        }
+        .help-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .help-number {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .help-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+        .help-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+        .earn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .earn-item {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .earn-val {
+            font-weight: 700;
+            color: #10B981;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <button class="icon-btn back-btn" onclick="history.back()">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+                <h1>How it Works</h1>
+            </div>
+        </header>
+
+        <section class="help-section">
+            <!-- Step 1 -->
+            <div class="help-card">
+                <div class="help-number">1</div>
+                <h3 class="help-title">Collect Points</h3>
+                <p class="help-text">Earn points automatically by interacting with the building services. The more you engage, the more you earn!</p>
+                <div class="earn-grid">
+                    <div class="earn-item">
+                        <span>On-time Rent</span>
+                        <span class="earn-val">+100 PTS</span>
+                    </div>
+                    <div class="earn-item">
+                        <span>Amenity Booking</span>
+                        <span class="earn-val">+25 PTS</span>
+                    </div>
+                    <div class="earn-item">
+                        <span>Event Entry</span>
+                        <span class="earn-val">+50 PTS</span>
+                    </div>
+                    <div class="earn-item">
+                        <span>Building Pulse</span>
+                        <span class="earn-val">+10 PTS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="help-card">
+                <div class="help-number">2</div>
+                <h3 class="help-title">Unlock Rewards</h3>
+                <p class="help-text">Browse the 'Ready to Redeem' section. Each reward has a point value. Once you have enough, simply tap redeem to generate your digital voucher.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="help-card">
+                <div class="help-number">3</div>
+                <h3 class="help-title">Scan & Enjoy</h3>
+                <p class="help-text">Take your digital voucher to the concierge or the relevant facility (like the Lobby Cafe) and scan your code to claim your prize!</p>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="help-card" style="border: 1px solid rgba(0, 122, 255, 0.1); background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div style="width: 40px; height: 40px; background: #007AFF; color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 700; color: #111827; margin: 0;">Still need help?</h3>
+                        <p style="font-size: 13px; color: #64748b; margin: 0;">Contact building management</p>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="redeem-btn" style="width: 100%; height: 44px; font-size: 12px; background: #007AFF;">Chat with Concierge</button>
+                    <div style="display: flex; justify-content: center; gap: 20px; font-size: 13px; font-weight: 600; color: #007AFF;">
+                        <span>Call +1 (555) 012-3456</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(0, 122, 255, 0.05); padding: 20px; border-radius: 20px; text-align: center;">
+                <ion-icon name="information-circle-outline" style="font-size: 24px; color: #007AFF; margin-bottom: 8px;"></ion-icon>
+                <p style="font-size: 12px; color: #007AFF; font-weight: 500;">Points expire 12 months from the date they are earned. Check your history for specific dates.</p>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
