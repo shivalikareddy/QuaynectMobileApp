@@ -1,1 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Bookings - Residency App</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Bookings Page Core Layout */
+        html, body {
+            overflow-y: auto !important; /* Force allow body scroll */
+            min-height: 100vh;
+        }
 
+        .hero-image {
+            width: 100%;
+            max-width: 402px;
+            height: 40vh;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, var(--hero-darkness, 0.2));
+            z-index: 2;
+            transition: background 0.05s linear;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bookings-header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 402px;
+            z-index: 100;
+            padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+            transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+        }
+
+        .bookings-header .back-btn,
+        .bookings-header .header-action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: transform 0.2s, background-color 0.2s;
+            flex-shrink: 0;
+            margin-right: 16px;
+            text-decoration: none;
+        }
+
+        .bookings-header .back-btn:hover,
+        .bookings-header .header-action-btn:hover {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .bookings-header .back-btn:active,
+        .bookings-header .header-action-btn:active {
+            transform: scale(0.9);
+        }
+
+        .bookings-header .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: left;
+            flex-grow: 1;
+            letter-spacing: -0.5px;
+        }
+
+        /* Theme for light backgrounds (Detail/Category pages) */
+        .bookings-header.fixed-header {
+            background: rgba(249, 250, 251, 0.9) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .bookings-header.fixed-header .header-title {
+            color: var(--text-color) !important;
+        }
+
+        .bookings-header.fixed-header .back-btn,
+        .bookings-header.fixed-header .header-action-btn {
+            background: white;
+            color: var(--text-color);
+            border: 1px solid #F1F5F9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .bookings-header.fixed-header .back-btn:active,
+        .bookings-header.fixed-header .header-action-btn:active {
+            background: #F8FAFC;
+        }
+
+        /* The fixed viewport for scrolling */
+        .scroll-wrapper {
+            position: fixed;
+            top: calc(76px + env(safe-area-inset-top, 0px)); /* Fixed anchor at the bottom of the header */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 402px;
+            bottom: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 10;
+            -webkit-overflow-scrolling: touch;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        .scroll-spacer {
+            height: calc(40vh - 76px - env(safe-area-inset-top, 0px) - 32px); /* Overlap by 32px to create the rounded "cut" effect */
+            background: transparent;
+            pointer-events: none;
+        }
+
+        /* Adjustments for taller screens (iPhone 17 Pro aspect ratio) */
+        @media screen and (max-aspect-ratio: 9/19) {
+            .hero-image {
+                height: 48vh;
+            }
+            .scroll-spacer {
+                height: calc(48vh - 76px - env(safe-area-inset-top, 0px) - 32px);
+            }
+            .bookings-container h3.section-title {
+                padding-top: 40px;
+            }
+        }
+
+        .bookings-container {
+            padding-bottom: 120px;
+            position: relative;
+            z-index: 11;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            overflow: hidden; /* Clips children to the container's rounded boundaries */
+        }
+
+        /* This creates the white container that "locks" at the top */
+        .sticky-bg-frame {
+            position: sticky;
+            top: 0;
+            z-index: 1; /* Frame is behind the main scrolling text/cards */
+            height: 0; /* Important: prevents the sticky frame from pushing content down */
+        }
+
+        .sticky-bg-frame::before {
+            content: '';
+            display: block;
+            height: 500vh; /* Extremely tall to ensure it covers all scrolling content */
+            background: var(--white);
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+        }
+
+        .container-handle {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            z-index: 2; /* Sits on top of the sticky background */
+        }
+
+        .bookings-container h3, 
+        .bookings-container p,
+        .bookings-container br {
+            position: relative;
+            z-index: 10; /* Ensure content is above the sticky background */
+            padding-left: var(--padding-page);
+            padding-right: var(--padding-page);
+        }
+
+        .bookings-container h3.section-title {
+            padding-top: 16px; /* Reduced from 32px */
+        }
+
+        .category-card {
+            width: 90%;
+            height: 88px;
+            border-radius: 20px;
+            margin: 0 auto 12px; /* Reduced from 16px */
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .category-card:active {
+            transform: scale(0.97);
+        }
+
+        .category-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(1.05) contrast(1.02);
+        }
+
+        .category-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.35) 0%, transparent 70%);
+            z-index: 2;
+        }
+
+        .category-card h4 {
+            position: relative;
+            z-index: 3;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .category-card ion-icon {
+            position: absolute;
+            right: 24px;
+            color: white;
+            font-size: 24px;
+            z-index: 3;
+        }
+
+        /* My Bookings Section */
+        .bookings-list {
+            padding: 0 var(--padding-page);
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Reduced from 12px */
+            margin-bottom: 24px; /* Reduced from 32px */
+            position: relative;
+            z-index: 10;
+        }
+
+        .bookings-empty-state {
+            padding: 0 var(--padding-page) 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 12px;
+        }
+
+        .bookings-empty-state.hidden {
+            display: none;
+        }
+
+        .empty-icon-container {
+            width: 64px;
+            height: 64px;
+            background: #F1F5F9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .empty-icon-container ion-icon {
+            font-size: 32px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .bookings-empty-state p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            padding: 0 !important; /* Override section padding */
+        }
+
+        .booking-card {
+            background: white;
+            padding: 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border: 1px solid #F1F5F9;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .booking-card:active {
+            transform: scale(0.98);
+        }
+
+        .booking-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #F8FAFC;
+        }
+
+        .booking-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .booking-info {
+            flex-grow: 1;
+        }
+
+        .booking-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1A1C1E;
+            margin-bottom: 4px;
+            padding-left: 0; /* Override section title padding */
+        }
+
+        .booking-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #6B7280;
+            font-size: 13px;
+        }
+
+        .booking-time ion-icon {
+            font-size: 14px;
+        }
+
+        .due-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #059669;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .due-time ion-icon {
+            font-size: 13px;
+        }
+
+        .booking-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .booking-badge.active {
+            background: #DCFCE7;
+            color: #166534;
+        }
+
+        .booking-badge.upcoming {
+            background: #EFF6FF;
+            color: #1E40AF;
+        }
+
+        .detail-arrow {
+            color: #CBD5E1;
+            font-size: 18px;
+            margin-left: 4px;
+        }
+
+        .policies-list {
+            background: white;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            border: 1px solid #F3F4F6;
+        }
+
+        .policy-row {
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            width: 100%;
+        }
+
+        .policy-row:last-child {
+            border-bottom: none;
+        }
+
+        .policy-row:active {
+            background: #F9FAFB;
+        }
+
+        .policy-row span {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .policy-row ion-icon {
+            font-size: 20px;
+            color: #111827;
+            transition: transform 0.3s ease;
+        }
+
+        .policy-row.active ion-icon {
+            transform: rotate(90deg);
+        }
+
+        .policy-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: #F9FAFB;
+            padding: 0 24px;
+        }
+
+        .policy-row.active .policy-content {
+            max-height: 200px; /* Adjust as needed */
+            padding: 16px 24px 20px;
+        }
+
+        .policy-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding: 0 !important;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px; /* Reduced from 20px */
+            color: var(--text-color);
+        }
+
+        /* Modal Overlay Base */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Resident ID Card Optimization for Mobile */
+        .resident-id-card {
+            background: white;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .resident-id-card .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: white;
+        }
+
+        .resident-id-header {
+            background: #0F172A;
+            padding: 28px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resident-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 18px;
+        }
+
+        .resident-logo ion-icon {
+            font-size: 26px;
+            color: #3B82F6;
+        }
+
+        .id-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+        }
+
+        .resident-id-body {
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .resident-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #F1F5F9;
+            margin-bottom: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .resident-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resident-basic-info h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0F172A;
+        }
+
+        .unit-number {
+            color: #64748B;
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .resident-qr-section {
+            background: #F8FAFC;
+            width: 100%;
+            padding: 24px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 16px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .large-qr {
+            font-size: 110px;
+            color: #0F172A;
+        }
+
+        .qr-label {
+            font-size: 12px;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .id-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .id-detail {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .id-detail .label {
+            font-size: 10px;
+            color: #94A3B8;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .id-detail .value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+
+        .id-detail .value.active {
+            color: #10B981;
+        }
+
+        /* Scrolled Header Optimization */
+        .bookings-header.scrolled {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: none;
+        }
+
+        .bookings-header.scrolled .header-title {
+            color: white;
+        }
+
+        .bookings-header.scrolled .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .bookings-header .header-title {
+            transition: color 0.3s ease;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .bookings-header.scrolled .header-title {
+            text-shadow: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="bookings-header">
+            <button class="back-btn" id="bookings-back-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <h1 class="header-title">Bookings</h1>
+            <button class="back-btn" id="qr-code-btn">
+                <ion-icon name="qr-code-outline"></ion-icon>
+            </button>
+        </header>
+
+        <div class="hero-image">
+            <img src="resource-hub.png" alt="Resource Hub">
+        </div>
+
+        <div class="scroll-wrapper">
+            <div class="scroll-spacer"></div>
+            <section class="bookings-container">
+                <div class="sticky-bg-frame">
+                    <div class="container-handle"></div>
+                </div>
+                
+                <h3 class="section-title">My Bookings</h3>
+                <div id="bookings-list" class="bookings-list">
+                    <!-- Dynamic Bookings will be loaded here -->
+                </div>
+
+                <div id="bookings-empty-state" class="bookings-empty-state hidden">
+                    <div class="empty-icon-container">
+                        <ion-icon name="calendar-clear-outline"></ion-icon>
+                    </div>
+                    <p>You have nothing here right now...<br>take a look at what we have to offer!</p>
+                </div>
+
+                <h3 class="section-title">Categories</h3>
+                
+                <div class="category-card">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768346590/tools-banner_qwgxo0.png" alt="Tools">
+                    <div class="overlay"></div>
+                    <h4>Tools</h4>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+
+                <div class="category-card">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768346591/recreation-banner_gggf2v.png" alt="Recreation">
+                    <div class="overlay"></div>
+                    <h4>Recreation</h4>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+
+                <div class="category-card">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768346592/spaces-banner_eor6ia.png" alt="Spaces">
+                    <div class="overlay"></div>
+                    <h4>Spaces</h4>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </div>
+
+                <h3 class="section-title">Policies</h3>
+                
+                <div class="policies-list">
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Loaning Periods</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Most items can be borrowed for up to 7 days. High-demand equipment may have shorter loan periods.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Fees & Deposits</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>A refundable deposit may be required for certain high-value tools. Overdue items incur a small daily fee.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Care & Use</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Please handle all equipment with care. Ensure items are cleaned and properly stored after use.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Returning Items</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Items must be returned to the main office during operational hours. Do not leave items unattended.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Damaged Items</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Report any damage immediately. Residents may be responsible for repair or replacement costs for negligence-based damage.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Space Booking Guide</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Shared spaces can be booked up to 2 weeks in advance via the app. Please vacate the space promptly at the end of your session.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Equipment Maintenance</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Regular maintenance is performed on all tools. If you notice any technical issues, please flag them within the app.</p>
+                        </div>
+                    </div>
+                    <div class="policy-row">
+                        <div class="policy-header">
+                            <span>Frequently Asked Questions</span>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                        <div class="policy-content">
+                            <p>Check our online portal for a full list of FAQs regarding equipment, spaces, and community guidelines.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="construct"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+
+        <!-- Resident ID Modal -->
+        <div id="resident-id-modal" class="modal-overlay hidden">
+            <div class="resident-id-card">
+                <button class="close-btn" id="resident-id-close-btn">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+                <div class="resident-id-header">
+                    <div class="resident-logo">
+                        <ion-icon name="cube-outline"></ion-icon>
+                        <span>Quaynect</span>
+                    </div>
+                    <div class="id-badge">RESIDENT</div>
+                </div>
+                
+                <div class="resident-id-body">
+                    <div class="resident-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Resident Photo">
+                    </div>
+                    <div class="resident-basic-info">
+                        <h3>Johnathan Doe</h3>
+                        <p class="unit-number">Unit 402, Building B</p>
+                    </div>
+                    
+                    <div class="resident-qr-section">
+                        <div class="qr-container">
+                            <ion-icon name="qr-code-outline" class="large-qr"></ion-icon>
+                        </div>
+                        <p class="qr-label">Scan to verify access</p>
+                    </div>
+                    
+                    <div class="id-details-grid">
+                        <div class="id-detail">
+                            <span class="label">MEMBER SINCE</span>
+                            <span class="value">JAN 2024</span>
+                        </div>
+                        <div class="id-detail">
+                            <span class="label">STATUS</span>
+                            <span class="value active">VERIFIED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Details Modal -->
+        <div id="booking-details-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <button class="close-btn" id="modal-close-btn">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+                <h3 class="modal-title">Booking Details</h3>
+                <div class="modal-content-area">
+                    <div class="modal-image-container">
+                        <img id="modal-resource-image" src="" alt="Resource Image">
+                    </div>
+                    <h4 id="modal-resource-name">Resource Name</h4>
+                    <p id="modal-resource-desc" class="text-secondary">Short description of the item.</p>
+                    
+                    <div class="modal-detail-row">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <span id="modal-booking-time">Today, 2:00 PM</span>
+                    </div>
+                    <div class="modal-detail-row" id="modal-due-time-row">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span id="modal-due-time">Due: 3:00 PM tomorrow</span>
+                    </div>
+                    <div class="modal-detail-row">
+                        <ion-icon name="location-outline"></ion-icon>
+                        <span>Quayside Hub - Desk A</span>
+                    </div>
+                    
+                    <button class="modal-action-btn primary" id="modal-view-resource-btn">View Resource</button>
+                    <button class="modal-action-btn secondary" id="modal-cancel-booking-btn">Cancel Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Scroll handling for Hero darkening
+            const heroImage = document.querySelector('.hero-image');
+            const scrollWrapper = document.querySelector('.scroll-wrapper');
+            const heroHeight = heroImage.offsetHeight;
+            const header = document.querySelector('.bookings-header');
+
+            scrollWrapper.addEventListener('scroll', () => {
+                const scrollY = scrollWrapper.scrollTop;
+                
+                // Darken image as we scroll
+                // Map 0 -> heroHeight to 0.2 -> 0.8 darkness
+                const darkness = Math.min(0.8, 0.2 + (scrollY / heroHeight) * 0.6);
+                heroImage.style.setProperty('--hero-darkness', darkness);
+                
+                // Keep image visible but slightly parallax or scale
+                const scale = 1 + (scrollY / heroHeight) * 0.1;
+                heroImage.style.transform = `translateX(-50%) scale(${Math.min(1.2, scale)})`;
+
+                // Header visibility on scroll
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Back button functionality
+            const backBtn = document.getElementById('bookings-back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    window.location.href = '../index.html';
+                });
+            }
+
+            // Resident ID Modal Logic
+            const qrBtn = document.getElementById('qr-code-btn');
+            const residentModal = document.getElementById('resident-id-modal');
+            const residentCloseBtn = document.getElementById('resident-id-close-btn');
+
+            if (qrBtn && residentModal) {
+                qrBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    residentModal.classList.remove('hidden');
+                    // Prevent scrolling on the main page while modal is open
+                    document.body.style.overflow = 'hidden';
+                    scrollWrapper.style.overflow = 'hidden';
+                });
+            }
+
+            if (residentCloseBtn && residentModal) {
+                const closeModal = () => {
+                    residentModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    scrollWrapper.style.overflow = 'auto';
+                };
+
+                residentCloseBtn.addEventListener('click', closeModal);
+
+                // Close when clicking overlay
+                residentModal.addEventListener('click', (e) => {
+                    if (e.target === residentModal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Dynamic Bookings Rendering
+            async function loadBookings() {
+                const bookingsList = document.getElementById('bookings-list');
+                const emptyState = document.getElementById('bookings-empty-state');
+                if (!bookingsList) return;
+
+                const savedBookings = JSON.parse(localStorage.getItem('myBookings') || '[]');
+                
+                if (savedBookings.length === 0) {
+                    bookingsList.innerHTML = '';
+                    emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                emptyState.classList.add('hidden');
+                
+                try {
+                    const response = await fetch('data.json');
+                    const data = await response.json();
+                    
+                    bookingsList.innerHTML = savedBookings.map(booking => {
+                        const item = data.find(i => i.id === parseInt(booking.id));
+                        if (!item) return '';
+
+                        let status = 'Upcoming';
+                        let statusClass = 'upcoming';
+                        let displayTime = '';
+                        let dueTimeStr = '';
+
+                        if (booking.type === 'now') {
+                            status = 'Active';
+                            statusClass = 'active';
+                            displayTime = 'Today, Immediate';
+                            
+                            // 24 hour loan period
+                            const pickupTime = new Date(booking.timestamp);
+                            const dueTime = new Date(pickupTime.getTime() + (24 * 60 * 60 * 1000));
+                            
+                            // Round to nearest 30 mins
+                            const minutes = dueTime.getMinutes();
+                            const roundedMinutes = Math.round(minutes / 30) * 30;
+                            dueTime.setMinutes(roundedMinutes);
+                            dueTime.setSeconds(0);
+                            
+                            dueTimeStr = `Due: ${dueTime.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} tomorrow`;
+                        } else if (booking.date) {
+                            const dateObj = new Date(booking.date);
+                            const now = new Date();
+                            const isToday = dateObj.toDateString() === now.toDateString();
+                            
+                            if (isToday) {
+                                status = 'Active';
+                                statusClass = 'active';
+                                displayTime = `Today, ${booking.time}`;
+                            } else {
+                                // Format: "Mon, Jan 12 • 2:00 PM"
+                                const datePart = dateObj.toLocaleDateString('en-US', { 
+                                    weekday: 'short', 
+                                    month: 'short', 
+                                    day: 'numeric' 
+                                });
+                                displayTime = `${datePart} • ${booking.time}`;
+                            }
+                        }
+
+                        return `
+                            <div class="booking-card" onclick="window.location.href='resource-detail.html?id=${item.id}'">
+                                <div class="booking-img">
+                                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/600x400?text=${item.name}'">
+                                </div>
+                                <div class="booking-info">
+                                    <h4>${item.name}</h4>
+                                    <div class="booking-time">
+                                        <ion-icon name="calendar-outline"></ion-icon>
+                                        <span>${displayTime}</span>
+                                    </div>
+                                    ${dueTimeStr ? `
+                                        <div class="due-time">
+                                            <ion-icon name="time-outline"></ion-icon>
+                                            <span>${dueTimeStr}</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <div class="booking-badge ${statusClass}">${status}</div>
+                                <ion-icon name="chevron-forward-outline" class="detail-arrow"></ion-icon>
+                            </div>
+                        `;
+                    }).reverse().join(''); // Show newest first
+                } catch (error) {
+                    console.error('Error loading bookings:', error);
+                }
+            }
+
+            await loadBookings();
+
+            // Category Card Interactions
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const category = card.querySelector('h4').innerText;
+                    window.location.href = `category.html?type=${category}`;
+                });
+            });
+
+            // Policy Accordion Interactions
+            const policyRows = document.querySelectorAll('.policy-row');
+            policyRows.forEach(row => {
+                row.addEventListener('click', () => {
+                    // Close other rows (optional, comment out for multiple open)
+                    policyRows.forEach(otherRow => {
+                        if (otherRow !== row) otherRow.classList.remove('active');
+                    });
+                    
+                    row.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
