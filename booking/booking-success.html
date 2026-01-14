@@ -50,12 +50,13 @@
             width: 100%;
             max-width: 402px;
             z-index: 100;
-            padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 16px;
+            padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
             transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+            box-sizing: border-box;
         }
 
         .bookings-header .back-btn,
@@ -75,7 +76,6 @@
             -webkit-backdrop-filter: blur(15px);
             transition: transform 0.2s, background-color 0.2s;
             flex-shrink: 0;
-            margin-right: 16px;
             text-decoration: none;
         }
 
@@ -96,6 +96,8 @@
             font-weight: 700;
             text-align: left;
             flex-grow: 1;
+            margin-left: 16px;
+            margin-right: 16px;
             letter-spacing: -0.5px;
         }
 
@@ -216,7 +218,7 @@
             width: 90%;
             height: 88px;
             border-radius: 20px;
-            margin: 0 auto 16px;
+            margin: 0 auto 12px;
             position: relative;
             z-index: 10;
             overflow: hidden;
@@ -300,7 +302,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
+            margin: 0 auto 12px;
         }
 
         .empty-icon-container ion-icon {
@@ -814,7 +816,7 @@
         .hold-note ion-icon {
             font-size: 20px;
             color: #D97706;
-            flex-shrink: 0;
+            
         }
 
         .hold-note p {

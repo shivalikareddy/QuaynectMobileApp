@@ -7,7 +7,7 @@
     "tier": 2,
     "points": 25,
     "availability": true,
-    "image": "tools/drill.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353836/drill_ovey1p.jpg",
     "desc": "18V Cordless power drill for drilling holes and driving screws.",
     "instructions": "Insert the battery into the base. Select your drill bit and tighten the chuck. Adjust the torque setting and use the trigger to start drilling slowly."
   },
@@ -19,7 +19,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "tools/tool box.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353850/tool_box_yu6hep.jpg",
     "desc": "General purpose kit containing hammer, pliers, screwdrivers, and wrenches.",
     "instructions": "Open the latches on the front to access the main compartment. Smaller bits and screws are located in the top organizer trays."
   },
@@ -31,7 +31,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "tools/measuring-tape.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353842/measuring-tape_uqj4rd.jpg",
     "desc": "25ft heavy-duty locking tape measure.",
     "instructions": "Pull the metal tab to extend the tape. Push the thumb lock down to hold the position. Release carefully to let it retract."
   },
@@ -43,7 +43,7 @@
     "tier": 1,
     "points": 10,
     "availability": false,
-    "image": "tools/dolly.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353834/dolly_yzmx5m.jpg",
     "desc": "Convertible hand truck for moving heavy boxes or furniture.",
     "instructions": "Slide the bottom plate under your load. Tilt the dolly back towards you while keeping your foot on the axle for leverage."
   },
@@ -55,7 +55,7 @@
     "tier": 3,
     "points": 10,
     "availability": true,
-    "image": "tools/garment-steamer.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353839/garment-steamer_foqf8x.jpg",
     "desc": "Portable steamer for removing wrinkles from fabric and upholstery.",
     "instructions": "Fill the water tank to the max line. Plug in and wait 30 seconds for steam. Run the nozzle vertically over hung garments."
   },
@@ -67,7 +67,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "tools/iron.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353840/iron_pegrek.jpg",
     "desc": "Includes steam iron and foldable ironing board.",
     "instructions": "Unfold the board and lock the legs. Fill iron with water, select heat setting, and wait for indicator light to turn off."
   },
@@ -79,7 +79,7 @@
     "tier": 3,
     "points": 10,
     "availability": true,
-    "image": "tools/spot-cleaner.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353849/spot-cleaner_rhjwtp.jpg",
     "desc": "Portable carpet and upholstery cleaner for stain removal."
   },
   {
@@ -90,7 +90,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "tools/level.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353842/level_hqk9p2.jpg",
     "desc": "24-inch I-beam spirit level."
   },
   {
@@ -101,7 +101,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "tools/extension-cord.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353837/extension-cord_dpeomp.jpg",
     "desc": "50ft indoor/outdoor heavy-duty power extension cable."
   },
   {
@@ -112,7 +112,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "tools/drill-bit-set.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353837/drill-bit-set_r6sbjp.jpg",
     "desc": "Assorted kit including masonry, wood, and metal bits."
   },
   {
@@ -123,7 +123,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "tools/safety-goggles.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353845/safety-goggles_ttjdq1.jpg",
     "desc": "ANSI-rated clear protective eyewear."
   },
   {
@@ -134,7 +134,7 @@
     "tier": 2,
     "points": 25,
     "availability": false,
-    "image": "tools/sewing-machine.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353846/sewing-machine_fwq1uk.jpg",
     "desc": "Heavy-duty machine suitable for canvas, denim, and light leather."
   },
   {
@@ -145,7 +145,7 @@
     "tier": 3,
     "points": 10,
     "availability": true,
-    "image": "tools/vacuum.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768353852/vacuum_etsv2n.jpg",
     "desc": "Industrial wet/dry shop vacuum."
   },
   {
