@@ -50,7 +50,7 @@
             width: 100%;
             max-width: 402px;
             z-index: 100;
-            padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 16px;
+            padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -95,14 +95,22 @@
             transform: scale(0.9);
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left:has(.back-btn) {
+            transform: translateX(-10px);
+        }
+
         .bookings-header .header-title {
             color: white;
-            font-size: 18px;
+            font-size: 28px;
             font-weight: 700;
             text-align: left;
             flex-grow: 1;
-            margin-left: 16px;
-            margin-right: 16px;
+            margin-left: 12px;
             letter-spacing: -0.5px;
         }
 
@@ -720,11 +728,13 @@
     <div class="app-container">
         <!-- Header -->
         <header class="bookings-header">
-            <button class="back-btn" id="bookings-back-btn">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-            </button>
-            <h1 class="header-title">Bookings</h1>
-            <button class="back-btn" id="qr-code-btn">
+            <div class="header-left">
+                <button class="back-btn" id="bookings-back-btn">
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                <h1 class="header-title">Bookings</h1>
+            </div>
+            <button class="back-btn" id="qr-code-btn" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2);">
                 <ion-icon name="qr-code-outline"></ion-icon>
             </button>
         </header>
@@ -869,7 +879,7 @@
                 <span>Messages</span>
             </div>
             <div class="nav-item">
-                <ion-icon name="person-circle-outline"></ion-icon>
+                <ion-icon name="person-outline"></ion-icon>
                 <span>Profile</span>
             </div>
         </nav>
