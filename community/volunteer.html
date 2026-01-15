@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Opportunities - Community Hub</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "primary-dark": "#2563EB",
+                        "background-light": "#F8F9FB",
+                        "background-dark": "#111827",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="volunteer.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-gray-900 dark:text-gray-100 antialiased min-h-screen flex justify-center">
+<div class="w-full max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark relative overflow-hidden flex flex-col">
+    <!-- Header -->
+    <header class="px-6 pt-6 pb-5">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button onclick="window.location.href='index.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 transition-all duration-300">
+                    <ion-icon name="arrow-back-outline" class="text-2xl"></ion-icon>
+                </button>
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    Opportunities
+                </h1>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 active:bg-gray-200 dark:active:bg-slate-600 shadow-sm border border-slate-200 dark:border-slate-700 transition-all duration-300">
+                <ion-icon name="search-outline" class="text-xl"></ion-icon>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto px-6 space-y-6 pb-24 pt-0">
+        <!-- Community Garden Coordinator -->
+        <div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-green-400/10 dark:bg-green-500/10 blur-3xl rounded-full"></div>
+            <div class="p-6 relative">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center">
+                        <span class="text-2xl">🪴</span>
+                    </div>
+                    <h2 class="text-xl font-bold dark:text-white">Community Garden Coordinator</h2>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Manage planting schedules and coordinate volunteers for the waterfront garden.
+                </p>
+            </div>
+            <div class="backdrop-blur-xl bg-slate-50/50 dark:bg-slate-800/40 border-t border-slate-100 dark:border-slate-800/50 p-5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold mb-0.5">Commitment</span>
+                    <span class="text-sm font-medium dark:text-slate-200">4-6 hours/week</span>
+                </div>
+                <button onclick="showDetails('garden')" class="bg-gradient-to-r from-primary to-blue-600 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <!-- Event Support Volunteer -->
+        <div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-orange-400/10 dark:bg-orange-500/10 blur-3xl rounded-full"></div>
+            <div class="p-6 relative">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center">
+                        <span class="text-2xl">🗓️</span>
+                    </div>
+                    <h2 class="text-xl font-bold dark:text-white">Event Support Volunteer</h2>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Assist with setup, registration, and logistics for community events.
+                </p>
+            </div>
+            <div class="backdrop-blur-xl bg-slate-50/50 dark:bg-slate-800/40 border-t border-slate-100 dark:border-slate-800/50 p-5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold mb-0.5">Commitment</span>
+                    <span class="text-sm font-medium dark:text-slate-200">Occasional weekends</span>
+                </div>
+                <button onclick="showDetails('event')" class="bg-gradient-to-r from-primary to-blue-600 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <!-- Waterfront Cleanup Lead -->
+        <div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-400/10 dark:bg-blue-500/10 blur-3xl rounded-full"></div>
+            <div class="p-6 relative">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+                        <span class="text-2xl">♻️</span>
+                    </div>
+                    <h2 class="text-xl font-bold dark:text-white">Waterfront Cleanup Lead</h2>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    Organize and lead monthly cleanup drives along the harbor.
+                </p>
+            </div>
+            <div class="backdrop-blur-xl bg-slate-50/50 dark:bg-slate-800/40 border-t border-slate-100 dark:border-slate-800/50 p-5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold mb-0.5">Commitment</span>
+                    <span class="text-sm font-medium dark:text-slate-200">Monthly</span>
+                </div>
+                <button onclick="showDetails('cleanup')" class="bg-gradient-to-r from-primary to-blue-600 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <!-- See All Positions Button -->
+        <div class="pt-4 pb-8">
+            <button class="w-full bg-primary hover:bg-blue-600 text-white py-4 px-6 rounded-2xl font-bold text-lg shadow-xl shadow-blue-500/25 transition-all transform active:scale-[0.98]">
+                See All Positions
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item">
+            <a href="../index.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <ion-icon name="construct-outline"></ion-icon>
+            <span>Services</span>
+        </div>
+        <div class="nav-item active">
+            <ion-icon name="chatbubble-ellipses"></ion-icon>
+            <span>Messages</span>
+        </div>
+        <a href="../profile/profile.html" class="nav-item" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <span>Profile</span>
+        </a>
+    </nav>
+</div>
+
+<!-- Details Modal -->
+<div id="detailsModal" class="fixed inset-0 z-50 hidden">
+    <!-- Blurred Background -->
+    <div class="fixed inset-0 bg-black/30 dark:bg-black/60" onclick="closeDetails()"></div>
+    
+    <!-- Modal Sheet -->
+    <div id="modalSheet" class="fixed inset-x-0 bottom-0 h-[92vh] bg-white dark:bg-card-dark rounded-t-3xl shadow-2xl flex flex-col transition-transform duration-300">
+        <!-- Handle -->
+        <div id="modalHandle" class="w-full flex justify-center py-3 cursor-grab active:cursor-grabbing">
+            <div class="w-10 h-1.5 bg-slate-300 dark:bg-zinc-700 rounded-full"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="flex-1 overflow-y-auto no-scrollbar px-5 pb-32">
+            <!-- Title -->
+            <div class="mb-6">
+                <h2 id="modalTitle" class="text-2xl font-bold leading-tight mb-1 text-slate-900 dark:text-white"></h2>
+                <p class="text-sm text-slate-500 dark:text-zinc-400">
+                    Posted by: <span class="font-medium text-slate-700 dark:text-zinc-300">Quayside Community Association</span>
+                </p>
+            </div>
+            
+            <!-- Image -->
+            <div class="mb-6 rounded-2xl overflow-hidden shadow-sm aspect-[16/9]">
+                <img id="modalImage" alt="Volunteer opportunity" class="w-full h-full object-cover"/>
+            </div>
+            
+            <!-- Info Grid -->
+            <div id="modalInfo" class="grid grid-cols-3 gap-3 mb-6"></div>
+            
+            <!-- Description -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">Description</h3>
+                <p id="modalDescription" class="text-[15px] leading-relaxed text-slate-600 dark:text-zinc-300"></p>
+            </div>
+            
+            <!-- Requirements -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold mb-3 text-slate-900 dark:text-white">Requirements & Info</h3>
+                <ul id="modalRequirements" class="space-y-3"></ul>
+            </div>
+            
+            <!-- Bottom Button -->
+            <div class="pt-4 pb-6">
+                <button onclick="signUpVolunteer()" class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition-all active:scale-[0.98] shadow-lg shadow-blue-500/20">
+                    Sign Up to Volunteer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sign Up Loading/Success Modal -->
+<div id="signUpModal" class="fixed inset-0 z-50 hidden items-center justify-center">
+    <div class="fixed inset-0 bg-black/50"></div>
+    <div class="relative bg-white dark:bg-card-dark rounded-3xl p-8 mx-4 max-w-sm w-full shadow-2xl">
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center">
+            <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Submitting...</h3>
+            <p class="text-slate-600 dark:text-slate-400">Please wait while we process your application</p>
+        </div>
+        
+        <!-- Success State -->
+        <div id="successState" class="text-center hidden">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <ion-icon name="checkmark-outline" class="text-white text-4xl"></ion-icon>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Success!</h3>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">You've successfully signed up for this opportunity</p>
+            <button onclick="closeSignUpModal()" class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-all active:scale-95">
+                Done
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 hidden"></canvas>
+
+<script src="volunteer.js"></script>
+</body>
+</html>

@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Queyside Club - Community</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        html, body {
+            overflow-y: auto !important;
+            min-height: 100vh;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 402px;
+            height: 40vh;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, var(--hero-darkness, 0.2));
+            z-index: 2;
+            transition: background 0.05s linear;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .group-header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 402px;
+            z-index: 100;
+            padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+            transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .group-header.scrolled {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+        }
+
+        .group-header .back-btn,
+        .group-header .bookmark-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .group-header .back-btn:hover,
+        .group-header .bookmark-btn:hover {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .group-header .header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            flex: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: color 0.3s ease;
+        }
+
+        .scroll-wrapper {
+            position: fixed;
+            top: calc(76px + env(safe-area-inset-top, 0px));
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 402px;
+            bottom: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 10;
+            -webkit-overflow-scrolling: touch;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        .scroll-spacer {
+            height: calc(40vh - 76px - env(safe-area-inset-top, 0px) - 32px);
+            background: transparent;
+            pointer-events: none;
+        }
+
+        @media screen and (max-aspect-ratio: 9/19) {
+            .hero-image {
+                height: 48vh;
+            }
+            .scroll-spacer {
+                height: calc(48vh - 76px - env(safe-area-inset-top, 0px) - 32px);
+            }
+            .group-container h3.section-title {
+                padding-top: 40px;
+            }
+        }
+
+        .group-container {
+            padding-bottom: 120px;
+            position: relative;
+            z-index: 11;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            overflow: hidden;
+        }
+
+        .sticky-bg-frame {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            height: 0;
+        }
+
+        .sticky-bg-frame::before {
+            content: '';
+            display: block;
+            height: 500vh;
+            background: var(--white);
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+        }
+
+        .container-handle {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 10;
+            padding: 16px var(--padding-page) 0;
+        }
+
+        .info-card {
+            width: 90%;
+            margin: 0 auto 12px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+            border: 1px solid #F3F4F6;
+        }
+
+        .info-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .member-count {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .member-count ion-icon {
+            font-size: 18px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: #EFF6FF;
+            color: var(--accent-blue);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Info Button */
+        .section-title-with-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0;
+            padding: 24px var(--padding-page) 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title-with-info .section-title {
+            margin: 0 !important;
+            padding: 0 !important;
+            flex: 1;
+        }
+
+        .info-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #EFF6FF;
+            color: var(--accent-blue);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .info-btn ion-icon {
+            font-size: 18px;
+            color: var(--accent-blue);
+        }
+
+        .info-btn:active {
+            transform: scale(0.95);
+            background: #DBEAFE;
+        }
+
+        /* Info Modal */
+        .info-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .info-modal.active {
+            display: flex;
+        }
+
+        .info-modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .info-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F3F4F6;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-btn:active {
+            transform: scale(0.95);
+            background: #E5E7EB;
+        }
+
+        .close-btn ion-icon {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .info-modal-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .info-modal-body p {
+            margin-bottom: 12px;
+        }
+
+        .info-modal-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-modal-body strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Weekly Goals Section */
+        .goals-stack {
+            position: relative;
+            width: 90%;
+            margin: 0 auto 24px;
+            padding-bottom: 32px;
+        }
+
+        .goal-card {
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #F3F4F6;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .goal-card:nth-child(1) {
+            position: relative;
+            z-index: 13;
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .goal-card:nth-child(2) {
+            z-index: 12;
+            transform: translateY(12px) scale(0.96);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .goal-card:nth-child(3) {
+            z-index: 11;
+            transform: translateY(24px) scale(0.92);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .goal-card:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .goal-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .goal-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .points-tag {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: #F5F3FF;
+            color: #7C3AED;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid #E9E3FF;
+            box-shadow: 0 2px 4px rgba(124, 58, 237, 0.06);
+        }
+
+        .points-tag ion-icon {
+            font-size: 14px;
+        }
+
+        .goal-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            position: relative;
+            width: 100%;
+            height: 8px;
+            background: #F3F4F6;
+            border-radius: 100px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
+            border-radius: 100px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .goal-card.completed {
+            border-color: #D1FAE5;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%);
+        }
+
+        .goal-card.completed .progress-bar {
+            background: linear-gradient(90deg, #10B981 0%, #34D399 100%);
+        }
+
+        .goal-card.completed .points-tag {
+            background: #D1FAE5;
+            color: #059669;
+            border-color: #A7F3D0;
+        }
+
+        .goal-participation {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 8px;
+            padding: 8px 0;
+            position: relative;
+            z-index: 14;
+        }
+
+        .goal-participation .avatars {
+            display: flex;
+            align-items: center;
+        }
+
+        .goal-participation .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+        }
+
+        .goal-participation .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .goal-participation .participation-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .goal-participation .participation-text strong {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .action-card {
+            width: 90%;
+            margin: 0 auto 12px;
+            background: var(--accent-blue);
+            border-radius: 20px;
+            padding: 16px 20px;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .action-card:active {
+            transform: scale(0.97);
+        }
+
+        .action-card ion-icon {
+            font-size: 20px;
+        }
+
+        .detail-card {
+            width: 90%;
+            margin: 0 auto 12px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+            border: 1px solid #F3F4F6;
+        }
+
+        .detail-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .group-container h3.section-title {
+            padding-top: 24px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-item ion-icon {
+            color: var(--accent-blue);
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .detail-item-content p {
+            margin: 0;
+        }
+
+        .detail-item-content .label {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .detail-item-content .value {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .events-scroll-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0 var(--padding-page) 12px;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            position: relative;
+            z-index: 10;
+        }
+
+        .events-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .event-card {
+            min-width: 280px;
+            height: 140px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .event-card:active {
+            transform: scale(0.97);
+        }
+
+        .event-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .event-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+        }
+
+        .event-card-content {
+            position: relative;
+            z-index: 3;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .event-card-content .event-title {
+            font-weight: 700;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .event-card-content .event-time {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .event-card-content p {
+            margin: 0;
+        }
+
+        .members-preview {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 12px;
+        }
+
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+        }
+
+        .member-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .member-count-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F3F4F6;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-left: -8px;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="group-header">
+            <a href="index.html" class="back-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+            <h1 class="header-title">Queyside Club</h1>
+            <button class="bookmark-btn">
+                <ion-icon name="bookmark-outline"></ion-icon>
+            </button>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800" alt="Queyside Club">
+        </div>
+
+        <div class="scroll-wrapper">
+            <div class="scroll-spacer"></div>
+            <section class="group-container">
+                <div class="sticky-bg-frame">
+                    <div class="container-handle"></div>
+                </div>
+
+                <!-- About -->
+                <h3 class="section-title">About the Club</h3>
+                <div class="info-card">
+                    <h2>Queyside Club</h2>
+                    <div class="member-count">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span>89 Members</span>
+                    </div>
+                    <p class="description">
+                        This page serves as a universal template for all community clubs within Queyside. When residents discover and click on any club card from the main community page, they'll be directed here to view club details, weekly goals, meeting information, and upcoming events. Each club shares this consistent layout and user experience.
+                    </p>
+                </div>
+
+                <!-- Join Button -->
+                <button class="action-card" id="joinBtn">
+                    <span>Join Queyside Club</span>
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </button>
+
+                <!-- Weekly Goals -->
+                <div class="section-title-with-info">
+                    <h3 class="section-title">Weekly Goals</h3>
+                    <button class="info-btn" id="weeklyGoalsInfoBtn">
+                        <ion-icon name="information"></ion-icon>
+                    </button>
+                </div>
+                
+                <div class="goals-stack">
+                    <div class="goal-card" data-goal-id="1">
+                        <div class="goal-card-header">
+                            <h4 class="goal-title">🤝 Attend Community Meetup</h4>
+                            <div class="points-tag">
+                                <ion-icon name="gift"></ion-icon>
+                                <span>+30</span>
+                            </div>
+                        </div>
+                        <p class="goal-description">Connect with fellow club members</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 50%;"></div>
+                        </div>
+                        <p class="progress-text">1 of 2 completed</p>
+                    </div>
+
+                    <div class="goal-card" data-goal-id="2">
+                        <div class="goal-card-header">
+                            <h4 class="goal-title">📋 Complete Club Survey</h4>
+                            <div class="points-tag">
+                                <ion-icon name="gift"></ion-icon>
+                                <span>+20</span>
+                            </div>
+                        </div>
+                        <p class="goal-description">Share your feedback and ideas</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <p class="progress-text">0 of 1 completed</p>
+                    </div>
+
+                    <div class="goal-card completed" data-goal-id="3">
+                        <div class="goal-card-header">
+                            <h4 class="goal-title">🎉 Invite a New Member</h4>
+                            <div class="points-tag">
+                                <ion-icon name="gift"></ion-icon>
+                                <span>+25</span>
+                            </div>
+                        </div>
+                        <p class="goal-description">Help grow our community</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                        <p class="progress-text">1 of 1 completed ✓</p>
+                    </div>
+                </div>
+
+                <div class="goal-participation">
+                    <div class="avatars">
+                        <div class="avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    </div>
+                    <p class="participation-text">Joined by <strong>21 Members</strong></p>
+                </div>
+
+                <!-- Meeting Information -->
+                <h3 class="section-title">Meeting Information</h3>
+                <div class="detail-card">
+                    <div class="detail-item">
+                        <ion-icon name="location-outline"></ion-icon>
+                        <div class="detail-item-content">
+                            <p class="label">Meeting Location</p>
+                            <p class="value">Community Center, Room 205</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <div class="detail-item-content">
+                            <p class="label">Meeting Time</p>
+                            <p class="value">Every Wednesday, 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <div class="detail-item-content">
+                            <p class="label">Organizer</p>
+                            <p class="value">Alex Martinez</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <h3 class="section-title">Upcoming Events</h3>
+                <div class="events-scroll-container">
+                    <div class="event-card" data-event-id="monthly-social">
+                        <img class="event-card-bg" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600" alt="Monthly Social">
+                        <div class="overlay"></div>
+                        <div class="event-card-content">
+                            <p class="event-title">Monthly Social Gathering</p>
+                            <p class="event-time">March 20 • 7:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="event-card" data-event-id="skills-workshop">
+                        <img class="event-card-bg" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600" alt="Workshop">
+                        <div class="overlay"></div>
+                        <div class="event-card-content">
+                            <p class="event-title">Skills Workshop</p>
+                            <p class="event-time">March 27 • 6:30 PM</p>
+                        </div>
+                    </div>
+                    <div class="event-card" data-event-id="community-project">
+                        <img class="event-card-bg" src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600" alt="Community Project">
+                        <div class="overlay"></div>
+                        <div class="event-card-content">
+                            <p class="event-title">Community Project Day</p>
+                            <p class="event-time">April 3 • 10:00 AM</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item">
+                <a href="../index.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <ion-icon name="construct-outline"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="chatbubble-ellipses"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <a href="../profile/profile.html" class="nav-item" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Sign Up Loading/Success Modal -->
+    <div id="signUpModal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="fixed inset-0 bg-black/50"></div>
+        <div class="relative bg-white dark:bg-card-dark rounded-3xl p-8 mx-4 max-w-sm w-full shadow-2xl">
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center">
+                <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Submitting...</h3>
+                <p class="text-slate-600 dark:text-slate-400">Please wait while we process your application</p>
+            </div>
+            
+            <!-- Success State -->
+            <div id="successState" class="text-center hidden">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <ion-icon name="checkmark-outline" class="text-white text-4xl"></ion-icon>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Success!</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">You've successfully joined Queyside Club</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 hidden"></canvas>
+
+    <!-- Info Modal -->
+    <div class="info-modal" id="weeklyGoalsModal">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 class="info-modal-title">Weekly Goals</h3>
+                <button class="close-btn" id="closeModalBtn">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+            <div class="info-modal-body">
+                <p><strong>Weekly goals</strong> encourage residents to take small actions like joining group activities, attending events, or returning shared resources on time.</p>
+                <p><strong>Completing these actions earns points automatically.</strong> Points can be redeemed for rewards, perks, or community benefits.</p>
+                <p><strong>Goals reset each week</strong> to keep participation low-pressure and flexible.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Animation Handler
+        const scrollWrapper = document.querySelector('.scroll-wrapper');
+        const header = document.querySelector('.group-header');
+        const heroImage = document.querySelector('.hero-image');
+
+        if (scrollWrapper && header && heroImage) {
+            const heroHeight = heroImage.offsetHeight;
+
+            scrollWrapper.addEventListener('scroll', () => {
+                const scrollY = scrollWrapper.scrollTop;
+                
+                // Darken image as we scroll
+                const darkness = Math.min(0.8, 0.2 + (scrollY / heroHeight) * 0.6);
+                heroImage.style.setProperty('--hero-darkness', darkness);
+                
+                // Parallax scale effect
+                const scale = 1 + (scrollY / heroHeight) * 0.1;
+                heroImage.style.transform = `translateX(-50%) scale(${Math.min(1.2, scale)})`;
+
+                // Header visibility
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Join button handler
+        const joinBtn = document.getElementById('joinBtn');
+        if (joinBtn) {
+            joinBtn.addEventListener('click', () => {
+                signUpJoinClub();
+            });
+        }
+
+        // Sign up functionality with loading and confetti
+        function signUpJoinClub() {
+            const signUpModal = document.getElementById('signUpModal');
+            const loadingState = document.getElementById('loadingState');
+            const successState = document.getElementById('successState');
+            
+            // Show modal with loading state
+            signUpModal.classList.remove('hidden');
+            signUpModal.classList.add('flex');
+            loadingState.classList.remove('hidden');
+            successState.classList.add('hidden');
+            
+            // Simulate API call - show success after 2 seconds
+            setTimeout(() => {
+                loadingState.classList.add('hidden');
+                successState.classList.remove('hidden');
+                
+                // Trigger confetti
+                launchConfetti();
+                
+                // Auto-redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'greenthumb-club-member.html';
+                }, 2000);
+            }, 2000);
+        }
+
+        function closeSignUpModal() {
+            const signUpModal = document.getElementById('signUpModal');
+            signUpModal.classList.add('hidden');
+            signUpModal.classList.remove('flex');
+        }
+
+        // Confetti animation
+        function launchConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.classList.remove('hidden');
+            
+            const confettiCount = 150;
+            const confetti = [];
+            const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+            
+            // Create confetti particles
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    r: Math.random() * 6 + 4,
+                    dx: (Math.random() - 0.5) * 8,
+                    dy: (Math.random() - 0.5) * 8 - 5,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 10,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    gravity: 0.3,
+                    opacity: 1
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                let activeConfetti = 0;
+                
+                confetti.forEach((c, index) => {
+                    if (c.opacity <= 0) return;
+                    
+                    activeConfetti++;
+                    
+                    ctx.save();
+                    ctx.globalAlpha = c.opacity;
+                    ctx.translate(c.x, c.y);
+                    ctx.rotate((c.rotation * Math.PI) / 180);
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.r / 2, -c.r / 2, c.r, c.r);
+                    ctx.restore();
+                    
+                    // Update position
+                    c.x += c.dx;
+                    c.y += c.dy;
+                    c.dy += c.gravity;
+                    c.rotation += c.rotationSpeed;
+                    
+                    // Fade out when falling
+                    if (c.y > canvas.height / 2) {
+                        c.opacity -= 0.01;
+                    }
+                });
+                
+                if (activeConfetti > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    canvas.classList.add('hidden');
+                }
+            }
+            
+            animate();
+        }
+
+        // Bookmark button handler
+        const bookmarkBtn = document.querySelector('.bookmark-btn');
+        if (bookmarkBtn) {
+            bookmarkBtn.addEventListener('click', () => {
+                const icon = bookmarkBtn.querySelector('ion-icon');
+                if (icon.name === 'bookmark-outline') {
+                    icon.name = 'bookmark';
+                } else {
+                    icon.name = 'bookmark-outline';
+                }
+            });
+        }
+
+        // Goal card click handlers
+        const goalCards = document.querySelectorAll('.goal-card');
+        const goalData = {
+            '1': {
+                title: '🤝 Attend Community Meetup',
+                description: 'Connect with fellow club members at our regular meetups. Build relationships and engage with the community through meaningful conversations.',
+                points: 30,
+                current: 1,
+                total: 2,
+                tips: ['Meetups are held bi-weekly', 'Bring a friend or come solo', 'Check the event calendar for locations']
+            },
+            '2': {
+                title: '📋 Complete Club Survey',
+                description: 'Share your feedback and ideas to help improve our club experience. Your input shapes future activities and events.',
+                points: 20,
+                current: 0,
+                total: 1,
+                tips: ['Survey takes 5-10 minutes', 'All responses are anonymous', 'Access link in weekly email']
+            },
+            '3': {
+                title: '🎉 Invite a New Member',
+                description: 'Help grow our community by inviting friends, neighbors, or colleagues who share similar interests.',
+                points: 25,
+                current: 1,
+                total: 1,
+                tips: ['Share your invite code', 'New members get bonus points', 'Check profile for referral link']
+            }
+        };
+
+        goalCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const goalId = card.getAttribute('data-goal-id');
+                const goal = goalData[goalId];
+                
+                if (goal) {
+                    showGoalDetailModal(goal);
+                }
+            });
+        });
+
+        function showGoalDetailModal(goal) {
+            const modalHTML = `
+                <div class="info-modal active" id="goalDetailModal" style="display: flex;">
+                    <div class="info-modal-content" style="max-width: 360px;">
+                        <div class="info-modal-header">
+                            <h3 class="info-modal-title">${goal.title}</h3>
+                            <button class="close-btn" onclick="closeGoalDetailModal()">
+                                <ion-icon name="close-outline"></ion-icon>
+                            </button>
+                        </div>
+                        <div class="info-modal-body">
+                            <p style="margin-bottom: 16px;">${goal.description}</p>
+                            <div style="background: #F5F3FF; border-radius: 12px; padding: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                                <span style="color: #7C3AED; font-weight: 600;">Reward</span>
+                                <div style="display: flex; align-items: center; gap: 4px; color: #7C3AED; font-weight: 700;">
+                                    <ion-icon name="gift" style="font-size: 18px;"></ion-icon>
+                                    <span>+${goal.points} points</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span style="font-weight: 600; color: var(--text-color);">Progress</span>
+                                    <span style="color: var(--text-secondary); font-size: 14px;">${goal.current} of ${goal.total}</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: #F3F4F6; border-radius: 100px; overflow: hidden;">
+                                    <div style="height: 100%; width: ${(goal.current/goal.total)*100}%; background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%); border-radius: 100px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-color);">Tips:</p>
+                                <ul style="margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 14px;">
+                                    ${goal.tips.map(tip => `<li style="margin-bottom: 4px;">${tip}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Close on background click
+            document.getElementById('goalDetailModal').addEventListener('click', (e) => {
+                if (e.target.id === 'goalDetailModal') {
+                    closeGoalDetailModal();
+                }
+            });
+        }
+
+        function closeGoalDetailModal() {
+            const modal = document.getElementById('goalDetailModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Weekly Goals Info Modal
+        const infoBtn = document.getElementById('weeklyGoalsInfoBtn');
+        const modal = document.getElementById('weeklyGoalsModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        if (infoBtn && modal && closeBtn) {
+            // Open modal
+            infoBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                modal.classList.add('active');
+            });
+
+            // Close modal when clicking close button
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close modal when clicking outside content
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        // Event card click handlers
+        const eventCards = document.querySelectorAll('.event-card');
+        eventCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const eventId = card.getAttribute('data-event-id');
+                // Navigate to booking page with event details
+                window.location.href = `../booking/resource-detail.html?event=${eventId}&group=greenthumb`;
+            });
+        });
+    </script>
+</body>
+</html>
