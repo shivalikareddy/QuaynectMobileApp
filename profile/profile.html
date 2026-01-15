@@ -2,233 +2,354 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Residency App</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Profile - Block 1B</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Community-style Header */
+        .bookings-header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 402px;
+            z-index: 100;
+            padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(248, 249, 251, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #F1F5F9;
+            transition: all 0.3s ease;
+        }
+
+        .bookings-header .back-btn,
+        .bookings-header .header-action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #F1F5F9;
+            font-size: 22px;
+            cursor: pointer;
+            color: #1A1C1E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, background-color 0.2s;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .bookings-header .header-title {
+            color: #1A1C1E;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: left;
+            flex-grow: 1;
+            margin-left: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Profile Content */
+        .profile-container {
+            padding-top: 80px;
+            padding-bottom: 100px;
+        }
+
+        .profile-hero {
+            padding: 30px var(--padding-page);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 4px solid white;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 16px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .profile-building {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Digital Key Card */
+        .digital-key-section {
+            padding: 0 var(--padding-page);
+            margin-bottom: 24px;
+        }
+
+        .key-card {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+            text-decoration: none;
+        }
+
+        .key-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .key-info {
+            flex: 1;
+        }
+
+        .key-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .key-info p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* Lists */
+        .section-header {
+            padding: 0 var(--padding-page) 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .settings-list {
+            margin: 0 var(--padding-page) 24px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid #F3F4F6;
+            cursor: pointer;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white; /* Default icon color to white for solid backgrounds */
+        }
+
+        .item-icon.blue { 
+            background-color: #3B82F6; 
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+        .item-icon.purple { 
+            background-color: #6366F1; 
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+        .item-icon.light-blue { 
+            background-color: #38bdf8; 
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .item-label {
+            flex: 1;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .item-chevron {
+            color: #94A3B8;
+            font-size: 20px;
+        }
+
+        /* Household Member Item */
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .laura-photo {
+            object-position: top center !important;
+        }
+
+        .member-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .logout-btn {
+            margin: 0 var(--padding-page) 40px;
+            padding: 16px;
+            background: #FEE2E2;
+            color: #EF4444;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            text-align: center;
+            width: calc(100% - 40px);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
-        <header class="main-header">
-            <div class="profile-group" onclick="window.location.href='profile/profile.html'" style="cursor: pointer;">
-                <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Profile" class="profile-pic">
-                <div class="residency-info">
-                    <span class="label">RESIDENT</span>
-                    <span class="address">Unit 1140</span>
-                </div>
-            </div>
-            <div class="header-actions">
-                <button class="icon-btn search-btn">
-                    <ion-icon name="search-outline"></ion-icon>
-                </button>
-                <button class="icon-btn notif-btn" onclick="window.location.href='notifications.html'">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                    <span class="notif-badge-dot"></span>
-                </button>
-            </div>
+        <header class="bookings-header">
+            <a href="../index.html" class="back-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+            <h1 class="header-title">My Profile</h1>
+            <button class="header-action-btn">
+                <ion-icon name="settings-outline"></ion-icon>
+            </button>
         </header>
 
-        <!-- Greeting -->
-        <section class="greeting-section">
-            <h1>Good Afternoon,<br>Laura</h1>
-            <div class="weather-widget">
-                <ion-icon name="cloud-outline" class="weather-icon"></ion-icon>
-                <span>9°C • Cloudy in Toronto</span>
-            </div>
-        </section>
+        <div class="profile-container">
+            <!-- Profile Hero -->
+            <section class="profile-hero">
+                <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="profile-avatar laura-photo">
+                <h2 class="profile-name">Laura Morris</h2>
+                <p class="profile-building">Block 1B • Unit 1140</p>
+            </section>
 
-        <!-- Event Card -->
-        <section class="event-card">
-            <div class="event-bg"></div>
-            <div class="event-overlay">
-                <span class="event-label">COMMUNITY EVENT</span>
-                <h2>Wine & Cheese Night</h2>
-                <p class="event-details">Friday, 7:00 PM • Party Hall</p>
-                <button class="rsvp-btn">RSVP</button>
-            </div>
-        </section>
-
-        <!-- Notification Banner -->
-        <div class="notification-banner">
-            <div class="banner-content">
-                <div class="banner-icon">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                </div>
-                <span class="banner-text">Rooftop pool closed for the season</span>
-            </div>
-            <ion-icon name="chevron-forward-outline" class="chevron-right"></ion-icon>
-        </div>
-
-        <!-- Dashboard Grid -->
-        <section class="dashboard-section">
-            <div class="section-header">
-                <h3>My Dashboard</h3>
-                <a href="#" class="edit-link">EDIT</a>
-            </div>
-            <div class="grid-container">
-                <!-- Digital Key -->
-                <div class="dashboard-card" data-id="card-key">
-                    <div class="icon-circle blue">
+            <!-- Digital Key Quick Link -->
+            <section class="digital-key-section">
+                <a href="#" class="key-card">
+                    <div class="key-icon">
                         <ion-icon name="key-outline"></ion-icon>
                     </div>
-                    <h4>Digital Key</h4>
-                    <p>Tap to unlock</p>
-                </div>
+                    <div class="key-info">
+                        <h3>Digital Key</h3>
+                        <p>Unlock unit and common areas</p>
+                    </div>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </a>
+            </section>
 
-                <!-- Booking & Community -->
-                <div class="dashboard-card" data-id="card-booking">
-                    <div class="icon-circle light-blue">
+            <!-- Household Members -->
+            <div class="section-header">
+                <h3 class="section-title">Household Members</h3>
+            </div>
+            <div class="settings-list">
+                <div class="list-item">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="member-avatar laura-photo">
+                    <div class="item-label">
+                        Laura Morris
+                        <div class="member-role">Primary Resident</div>
+                    </div>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </div>
+                <div class="list-item">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768350001/AdobeStock_514723373_dtpnjk.jpg" alt="Ross Larson" class="member-avatar">
+                    <div class="item-label">
+                        Ross Larson
+                        <div class="member-role">Resident</div>
+                    </div>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </div>
+            </div>
+
+            <!-- User Settings -->
+            <div class="section-header">
+                <h3 class="section-title">Account Settings</h3>
+            </div>
+            <div class="settings-list">
+                <a href="#" class="list-item">
+                    <div class="item-icon light-blue">
                         <ion-icon name="calendar-outline"></ion-icon>
                     </div>
-                    <h4>Booking</h4>
-                    <p>Book pool deck</p>
-                </div>
-
-                <!-- Packages -->
-                <div class="dashboard-card" data-id="card-packages">
-                    <div class="icon-circle purple">
+                    <span class="item-label">Personal Information</span>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </a>
+                <a href="#" class="list-item">
+                    <div class="item-icon purple">
                         <ion-icon name="cube-outline"></ion-icon>
                     </div>
-                    <div class="badge">3</div>
-                    <h4>Packages</h4>
-                    <p>3 items ready</p>
-                </div>
-
-                <!-- Community -->
-                <div class="dashboard-card" data-id="card-community">
-                    <div class="icon-circle purple">
-                        <ion-icon name="people-outline"></ion-icon>
+                    <span class="item-label">Notifications</span>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </a>
+                <a href="#" class="list-item">
+                    <div class="item-icon blue">
+                        <ion-icon name="key-outline"></ion-icon>
                     </div>
-                    <h4>Community</h4>
-                    <p>Social, events & more</p>
-                </div>
+                    <span class="item-label">Privacy & Security</span>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </a>
+                <a href="#" class="list-item">
+                    <div class="item-icon light-blue">
+                        <ion-icon name="help-buoy-outline"></ion-icon>
+                    </div>
+                    <span class="item-label">Support</span>
+                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                </a>
             </div>
 
-            <!-- Extra Cards (Hidden wrapper for animation) -->
-            <div class="expandable-wrapper">
-                <div class="grid-container second-grid">
-                    <div class="dashboard-card" data-id="card-points">
-                        <div class="icon-circle green">
-                             <ion-icon name="gift-outline"></ion-icon>
-                        </div>
-                        <h4>Points</h4>
-                        <p>View rewards</p>
-                    </div>
+            <button class="logout-btn">Log Out</button>
 
-                    <div class="dashboard-card" data-id="card-payments">
-                        <div class="icon-circle orange">
-                            <ion-icon name="card-outline"></ion-icon>
-                        </div>
-                        <h4>Payments</h4>
-                        <p>View history</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Expand Button -->
-            <div class="expand-dashboard">
-                <button class="expand-btn" aria-label="Show more">
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-                </button>
-            </div>
-        </section>
-
-        <!-- Live Occupancy Section -->
-        <section class="section-container" id="occupancy-section" style="margin-bottom: 80px;">
-            <h3>Live Occupancy</h3>
-            <div class="occupancy-grid">
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Gym/ Fitness Room</h4>
-                            <div class="live-count">
-                                <span class="count-num">42</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="75">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="75, 100" />
-                            </svg>
-                            <span class="percentage">75%</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-pill busy">Busy</span>
-                        <div class="trend-text">
-                            <ion-icon name="trending-up-outline"></ion-icon>
-                            <span>Peak 6PM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Work Lounge</h4>
-                            <div class="live-count">
-                                <span class="count-num">12</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="25">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="25, 100" />
-                            </svg>
-                            <span class="percentage">25%</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-pill quiet">Quiet</span>
-                        <div class="trend-text">
-                            <ion-icon name="time-outline"></ion-icon>
-                            <span>Quiet now</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Rooftop Pool</h4>
-                            <div class="live-count">
-                                <span class="count-num">0</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="0">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100" />
-                            </svg>
-                            <span class="percentage">0%</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-pill closed">Closed</span>
-                        <div class="trend-text">
-                            <ion-icon name="cloudy-outline"></ion-icon>
-                            <span>Cloudy Day</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
 
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
-            <div class="nav-item active">
-                <ion-icon name="home"></ion-icon>
+            <a href="../index.html" class="nav-item">
+                <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
-            </div>
+            </a>
             <div class="nav-item">
                 <ion-icon name="construct-outline"></ion-icon>
                 <span>Services</span>
@@ -237,12 +358,12 @@
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item" onclick="window.location.href='profile/profile.html'">
-                <ion-icon name="person-circle-outline"></ion-icon>
+            <div class="nav-item active">
+                <ion-icon name="person-circle"></ion-icon>
                 <span>Profile</span>
             </div>
         </nav>
     </div>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
