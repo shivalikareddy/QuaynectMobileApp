@@ -156,7 +156,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "recreation/badminton-duo-set.png",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/badminton-duo-set_yuppgo.png",
     "desc": "Includes two rackets and a tube of birdies.",
     "instructions": "Remove rackets from the sleeve. Don't hit the birdies too hard near walls. Return all birdies to the tube after play."
   },
@@ -168,7 +168,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "recreation/soccer-ball.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/soccer-ball_iqvalg.jpg",
     "desc": "Standard size 5 soccer ball.",
     "instructions": "Ensure the ball is properly inflated. Use only on soft ground or designated pitches. Wipe clean if used in mud."
   },
@@ -180,7 +180,7 @@
     "tier": 3,
     "points": 10,
     "availability": false,
-    "image": "recreation/spikebell-set.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/spikebell-set_lheprf.jpg",
     "desc": "Standard roundnet kit with net, frame, and 3 balls.",
     "instructions": "Assemble the yellow rim and attach the net tightly. Bounce the ball off the net to play. Disassemble carefully to store."
   },
@@ -192,7 +192,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/f59e0b/white?text=Toronto+Monopoly",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768445128/AdobeStock_322569136_Editorial_Use_Only_dvxheh.jpg",
     "desc": "Classic property trading game, Toronto edition.",
     "instructions": "Distribute cash and select your tokens. Follow the classic Monopoly rules. Ensure all cards and pieces are returned to the box."
   },
@@ -204,7 +204,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "recreation/deck-of-cards.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442357/deck-of-cards_ft9zed.jpg",
     "desc": "Standard 52-card deck (Bicycle brand).",
     "instructions": "Shuffle and deal. Please count all 52 cards before returning to the pack."
   },
@@ -216,7 +216,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "recreation/pickleball-duo-set.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/pickleball-duo-set_splcpg.jpg",
     "desc": "Two paddles and two outdoor pickleballs.",
     "instructions": "Use on designated pickleball courts. Do not use paddles to hit heavy objects. Return balls to the pouch."
   },
@@ -228,7 +228,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "recreation/art-easel.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768445139/AdobeStock_1602959551_unksea.jpg",
     "desc": "Adjustable wooden tripod easel for canvas painting.",
     "instructions": "Loosen the wing nuts to adjust the leg height. Secure the canvas between the top and bottom tray clamps."
   },
@@ -240,7 +240,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "recreation/toronto-puzzle.jpg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/toronto-puzzle_xaoavs.jpg",
     "desc": "1000-piece jigsaw puzzle featuring the Toronto skyline.",
     "instructions": "Find a flat surface and start with the edges. Please triple-check you haven't dropped any pieces on the floor."
   },
@@ -252,7 +252,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "recreation/frisbee.jpeg",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442356/frisbee_flr0ds.jpg",
     "desc": "Classic 175g ultimate disc for outdoor play.",
     "instructions": "Hold with a firm grip and flick your wrist to throw. Avoid throwing near windows or traffic."
   },
@@ -264,7 +264,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/f59e0b/white?text=Basketball",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768445129/AdobeStock_176733545_tck2ws.jpg",
     "desc": "Indoor/Outdoor composite leather basketball (Size 7)."
   },
   {
@@ -275,7 +275,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/f59e0b/white?text=Tripod",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768445129/AdobeStock_341649890_szcvbh.jpg",
     "desc": "Lightweight aluminum camera tripod with phone mount."
   },
   {
@@ -286,7 +286,7 @@
     "tier": 3,
     "points": 50,
     "availability": false,
-    "image": "https://placehold.co/600x400/f59e0b/white?text=DSLR+Camera",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1768442723/pexels-vlado-krstevski-49911798-7619784_mzmpfi.jpg",
     "desc": "Canon EOS Rebel with 18-55mm lens kit."
   },
   {
@@ -297,7 +297,7 @@
     "tier": 3,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/10b981/white?text=Billiards+Room",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696599/AdobeStock_1870576796_Preview_lfnxcn.jpg",
     "desc": "Common room with pool table and lounge seating."
   },
   {
@@ -308,7 +308,7 @@
     "tier": 3,
     "points": 25,
     "availability": false,
-    "image": "https://placehold.co/600x400/10b981/white?text=Theatre",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696598/AdobeStock_283399627_njshgu.jpg",
     "desc": "Bookable screening room with projector and surround sound."
   },
   {
@@ -319,7 +319,7 @@
     "tier": 2,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/10b981/white?text=Yoga+Studio",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696598/AdobeStock_1775226022_gwihbx.jpg",
     "desc": "Open floor studio with mirrors and mats provided."
   },
   {
@@ -330,7 +330,7 @@
     "tier": 1,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/10b981/white?text=Meeting+Room",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696879/AdobeStock_478444215_irfxhp.jpg",
     "desc": "Quiet workspace with whiteboard and conference table."
   },
   {
@@ -341,7 +341,7 @@
     "tier": 2,
     "points": 25,
     "availability": true,
-    "image": "https://placehold.co/600x400/10b981/white?text=Barbeque",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696598/AdobeStock_905802817_vwcjmo.jpg",
     "desc": "Outdoor gas grill station located on the patio."
   },
   {
@@ -352,7 +352,7 @@
     "tier": 3,
     "points": 10,
     "availability": true,
-    "image": "https://placehold.co/600x400/10b981/white?text=Rooftop+Terrace",
+    "image": "https://res.cloudinary.com/dflkg5tne/image/upload/v1769696598/AdobeStock_214005713_Preview_uprfgc.jpg",
     "desc": "Open air rooftop space with dining tables and view."
   }
 ]
