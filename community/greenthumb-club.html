@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Queyside Club - Community</title>
+    <title>Quayside Club - Community</title>
     <link rel="stylesheet" href="../style.css">
     <style>
         html, body {
@@ -13,7 +13,7 @@
 
         .hero-image {
             width: 100%;
-            max-width: 402px;
+            max-width: 100%;
             height: 40vh;
             position: fixed;
             top: 0;
@@ -47,7 +47,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 402px;
+            max-width: 100%;
             z-index: 100;
             padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 16px;
             display: flex;
@@ -93,7 +93,6 @@
             font-weight: 700;
             text-align: center;
             flex: 1;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
             transition: color 0.3s ease;
         }
 
@@ -103,7 +102,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 402px;
+            max-width: 100%;
             bottom: 0;
             overflow-y: auto;
             overflow-x: hidden;
@@ -764,7 +763,7 @@
             <a href="index.html" class="back-btn">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
-            <h1 class="header-title">Queyside Club</h1>
+            <h1 class="header-title">Quayside Club</h1>
             <button class="bookmark-btn">
                 <ion-icon name="bookmark-outline"></ion-icon>
             </button>
@@ -772,7 +771,7 @@
 
         <!-- Hero Image -->
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800" alt="Queyside Club">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800" alt="Quayside Club">
         </div>
 
         <div class="scroll-wrapper">
@@ -785,19 +784,19 @@
                 <!-- About -->
                 <h3 class="section-title">About the Club</h3>
                 <div class="info-card">
-                    <h2>Queyside Club</h2>
+                    <h2>Quayside Club</h2>
                     <div class="member-count">
                         <ion-icon name="people-outline"></ion-icon>
                         <span>89 Members</span>
                     </div>
                     <p class="description">
-                        This page serves as a universal template for all community clubs within Queyside. When residents discover and click on any club card from the main community page, they'll be directed here to view club details, weekly goals, meeting information, and upcoming events. Each club shares this consistent layout and user experience.
+                        This page serves as a universal template for all community clubs within Quayside. When residents discover and click on any club card from the main community page, they'll be directed here to view club details, weekly goals, meeting information, and upcoming events. Each club shares this consistent layout and user experience.
                     </p>
                 </div>
 
                 <!-- Join Button -->
                 <button class="action-card" id="joinBtn">
-                    <span>Join Queyside Club</span>
+                    <span>Join Quayside Club</span>
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </button>
 
@@ -963,7 +962,7 @@
                     <ion-icon name="checkmark-outline" class="text-white text-4xl"></ion-icon>
                 </div>
                 <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Success!</h3>
-                <p class="text-slate-600 dark:text-slate-400 mb-6">You've successfully joined Queyside Club</p>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">You've successfully joined Quayside Club</p>
             </div>
         </div>
     </div>
@@ -1271,5 +1270,6 @@
             });
         });
     </script>
+    <script src="../script.js"></script>
 </body>
 </html>
