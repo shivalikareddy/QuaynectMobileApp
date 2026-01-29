@@ -134,7 +134,7 @@
         <div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
             <div class="p-6 relative">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="w-12 h-12 rounded-[24px] bg-green-50 dark:bg-green-900/30 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-[20px] bg-green-50 dark:bg-green-900/30 flex items-center justify-center">
                         <span class="text-2xl">🪴</span>
                     </div>
                     <h2 class="text-xl font-bold dark:text-white">Community Garden Coordinator</h2>
@@ -158,7 +158,7 @@
         <div class="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
             <div class="p-6 relative">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="w-12 h-12 rounded-[24px] bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-[20px] bg-orange-50 dark:bg-orange-900/30 flex items-center justify-center">
                         <span class="text-2xl">🗓️</span>
                     </div>
                     <h2 class="text-xl font-bold dark:text-white">Event Support Volunteer</h2>
@@ -183,7 +183,7 @@
 
             <div class="p-6 relative">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="w-12 h-12 rounded-[24px] bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-[20px] bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
                         <span class="text-2xl">♻️</span>
                     </div>
                     <h2 class="text-xl font-bold dark:text-white">Waterfront Cleanup Lead</h2>
@@ -205,7 +205,7 @@
 
         <!-- See All Positions Button -->
         <div class="pt-4 pb-8">
-            <button class="w-full bg-primary text-white py-4 px-6 rounded-[24px] font-bold text-lg shadow-sm transition-all transform active:scale-[0.98]">
+            <button class="w-full bg-primary text-white py-4 px-6 rounded-[20px] font-bold text-lg shadow-sm transition-all transform active:scale-[0.98]">
                 See All Positions
             </button>
         </div>
@@ -219,12 +219,12 @@
                 <span>Home</span>
             </a>
         </div>
-        <div class="nav-item">
-            <ion-icon name="construct-outline"></ion-icon>
-            <span>Services</span>
-        </div>
-        <div class="nav-item active">
-            <ion-icon name="chatbubble-ellipses"></ion-icon>
+        <div class="nav-item" onclick="window.location.href='../services.html'" style="cursor: pointer;">
+                <ion-icon name="construct-outline"></ion-icon>
+                <span>Services</span>
+            </div>
+        <div class="nav-item" onclick="window.location.href='../messages/index.html'" style="cursor: pointer;">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
             <span>Messages</span>
         </div>
         <a href="../profile/profile.html" class="nav-item" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
@@ -257,7 +257,7 @@
             </div>
             
             <!-- Image -->
-            <div class="mb-6 rounded-[24px] overflow-hidden shadow-sm aspect-[16/9]">
+            <div class="mb-6 rounded-[20px] overflow-hidden shadow-sm aspect-[16/9]">
                 <img id="modalImage" alt="Volunteer opportunity" class="w-full h-full object-cover"/>
             </div>
             
