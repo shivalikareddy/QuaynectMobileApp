@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Determine path depth for navigation
-    const knownFolders = ['payments', 'booking', 'digital-key', 'community', 'points', 'packages'];
+    const knownFolders = ['payments', 'booking', 'digital-key', 'community', 'points', 'packages', 'profile', 'messages'];
     const isInSubfolder = knownFolders.some(folder => window.location.pathname.includes('/' + folder + '/'));
     const prefix = isInSubfolder ? '../' : '';
 
@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
              }
              if(spanText === 'Services') {
                  window.location.href = prefix + 'services.html';
+                 return;
+             }
+             if(spanText === 'Profile') {
+                 window.location.href = prefix + 'profile/profile.html';
                  return;
              }
 
@@ -252,12 +256,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Notification Banner
     const banner = document.querySelector('.notification-banner');
-    if (banner) {
+    const poolModal = document.getElementById('poolModal');
+    const poolModalBody = document.getElementById('poolModalBody');
+    const closePoolModal = document.getElementById('closePoolModal');
+
+    if (banner && poolModal) {
         banner.addEventListener('click', () => {
             banner.style.transform = 'scale(0.98)';
             setTimeout(() => {
-                window.location.href = prefix + 'booking/index.html#occupancy-section';
+                const bannerText = banner.querySelector('.banner-text')?.textContent || '';
+                if (bannerText.toLowerCase().includes('pool')) {
+                    const today = new Date();
+                    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+                    const dateStr = today.toLocaleDateString('en-US', options);
+                    
+                    if (poolModalBody) {
+                        poolModalBody.innerHTML = `<p>As of <strong>${dateStr}</strong> the pool has been closed for the season and will open again in April. The rooftop hot tub will remain open all winter.</p>`;
+                    }
+                    
+                    poolModal.style.display = 'flex';
+                    banner.style.transform = 'scale(1)';
+                } else {
+                    window.location.href = prefix + 'booking/index.html#occupancy-section';
+                }
             }, 100);
+        });
+
+        if (closePoolModal) {
+            closePoolModal.addEventListener('click', () => {
+                poolModal.style.display = 'none';
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === poolModal) {
+                poolModal.style.display = 'none';
+            }
         });
     }
 

@@ -121,7 +121,7 @@ body {
 }
 
 .residency-info .label {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--text-secondary);
@@ -129,7 +129,7 @@ body {
 }
 
 .residency-info .address {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-color);
 }
@@ -669,7 +669,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.2); /* Deep lift shadow */
+    box-shadow: var(--shadow-sm);
     z-index: 100;
     padding: 0 10px;
 }
@@ -683,6 +683,7 @@ body {
     cursor: pointer;
     width: 60px;
     transition: color 0.3s ease;
+    text-decoration: none;
 }
 
 .nav-item.active {
@@ -2147,7 +2148,6 @@ body {
 .access-card-container {
     perspective: 1000px;
     width: 100%;
-    max-width: 340px;
     margin: 20px auto 30px;
 }
 
