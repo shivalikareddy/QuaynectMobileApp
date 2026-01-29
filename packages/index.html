@@ -13,12 +13,11 @@
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
-            <div class="header-left">
-                <button class="icon-btn back-btn" onclick="history.back()">
-                    <ion-icon name="chevron-back-outline"></ion-icon>
-                </button>
-                <h1>Packages</h1>
-            </div>
+            <button class="back-btn" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <h1 class="header-title">Packages</h1>
+            <div class="header-action-placeholder"></div>
         </header>
 
         <!-- Package Count with Carousel -->
@@ -163,7 +162,7 @@
                 <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </div>
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="window.location.href='../services.html'" style="cursor: pointer;">
                 <ion-icon name="construct"></ion-icon>
                 <span>Services</span>
             </div>
@@ -171,7 +170,7 @@
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../profile/profile.html'" style="cursor: pointer;">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <span>Profile</span>
             </div>
