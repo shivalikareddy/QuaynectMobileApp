@@ -694,3 +694,31 @@ document.querySelectorAll('.search-btn').forEach(btn => {
         }
     });
 });
+
+// --- Expanding Header Search Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const mainHeader = document.getElementById('mainHeader');
+    const openSearchBtn = document.getElementById('openSearchBtn');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
+    const headerSearchInput = document.getElementById('headerSearchInput');
+
+    if (openSearchBtn && mainHeader) {
+        openSearchBtn.addEventListener('click', () => {
+            mainHeader.classList.add('search-active');
+            setTimeout(() => {
+                if (headerSearchInput) headerSearchInput.focus();
+            }, 100);
+        });
+    }
+
+    if (closeSearchBtn && mainHeader) {
+        closeSearchBtn.addEventListener('click', () => {
+            mainHeader.classList.remove('search-active');
+            if (headerSearchInput) {
+                headerSearchInput.value = '';
+                // Trigger input event to clear results
+                headerSearchInput.dispatchEvent(new Event('input'));
+            }
+        });
+    }
+});

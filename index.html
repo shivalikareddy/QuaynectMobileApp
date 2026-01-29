@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quaynect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Residency App</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,16 +15,25 @@
 <body>
     <div class="app-container">
         <!-- Header -->
-        <header class="main-header">
-            <div class="profile-group" onclick="window.location.href='profile/profile.html'" style="cursor: pointer;">
+        <header class="main-header" id="mainHeader">
+            <div class="profile-group" id="profileGroup">
                 <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Profile" class="profile-pic">
                 <div class="residency-info">
                     <span class="label">RESIDENT</span>
                     <span class="address">Unit 1140</span>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="icon-btn search-btn">
+
+            <div class="search-expand-container" id="searchExpandContainer">
+                <ion-icon name="search-outline" class="search-icon-fixed"></ion-icon>
+                <input type="text" placeholder="Search Quaynect..." id="headerSearchInput">
+                <button class="close-search-btn" id="closeSearchBtn">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+
+            <div class="header-actions" id="headerActions">
+                <button class="icon-btn search-btn" id="openSearchBtn">
                     <ion-icon name="search-outline"></ion-icon>
                 </button>
                 <button class="icon-btn notif-btn" onclick="window.location.href='notifications.html'">
@@ -44,7 +53,7 @@
         </section>
 
         <!-- Event Card -->
-        <section class="event-card">
+        <section class="event-card" onclick="window.location.href='events/wine-cheese-night.html'" style="cursor: pointer;">
             <div class="event-bg"></div>
             <div class="event-overlay">
                 <span class="event-label">COMMUNITY EVENT</span>
@@ -233,11 +242,11 @@
                 <ion-icon name="construct-outline"></ion-icon>
                 <span>Services</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='messages/index.html'">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item" onclick="window.location.href='profile/profile.html'">
+            <div class="nav-item">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <span>Profile</span>
             </div>
