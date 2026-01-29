@@ -13,12 +13,11 @@
     <div class="app-container">
         <!-- Header -->
         <header class="app-header billing-header">
-            <div class="header-left">
-                <a href="#" onclick="history.back(); return false;" class="icon-btn back-btn">
-                    <ion-icon name="chevron-back-outline"></ion-icon>
-                </a>
-                <h1>Payments</h1>
-            </div>
+            <a href="../index.html" class="back-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+            <h1 class="header-title">Payments</h1>
+            <div style="width: 40px;"></div>
         </header>
 
         <!-- Search Bar -->
@@ -323,15 +322,15 @@
                 <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </div>
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="window.location.href='../services.html'" style="cursor: pointer;">
                 <ion-icon name="construct"></ion-icon>
                 <span>Services</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../messages/index.html'" style="cursor: pointer;">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../profile/profile.html'" style="cursor: pointer;">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <span>Profile</span>
             </div>
