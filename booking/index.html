@@ -61,19 +61,18 @@
 
         .bookings-header .back-btn,
         .bookings-header .header-action-btn {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 24px;
+            background: #FFFFFF;
+            border: 1px solid #F1F5F9;
+            font-size: 22px;
             cursor: pointer;
-            color: white;
+            color: #64748B;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: transform 0.2s, background-color 0.2s;
             flex-shrink: 0;
             text-decoration: none;
@@ -496,7 +495,7 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 12px; /* Reduced from 20px */
             color: var(--text-color);
@@ -535,6 +534,8 @@
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 40px 24px;
+            text-align: center;
         }
 
         @keyframes modalPop {
@@ -544,9 +545,9 @@
 
         .resident-id-card .close-btn {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(255, 255, 255, 0.2);
+            top: 20px;
+            right: 20px;
+            background: #F1F5F9;
             border: none;
             width: 32px;
             height: 32px;
@@ -556,137 +557,49 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            color: white;
+            color: #0F172A;
         }
 
-        .resident-id-header {
-            background: #0F172A;
-            padding: 28px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .resident-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            font-size: 28px;
-        }
-
-        .resident-logo ion-icon {
-            font-size: 26px;
-            color: #3B82F6;
-        }
-
-        .id-badge {
-            background: rgba(59, 130, 246, 0.2);
-            color: #60A5FA;
-            padding: 6px 12px;
-            border-radius: 100px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-        }
-
-        .resident-id-body {
-            padding: 32px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .resident-id-card {
+            padding: 40px 24px;
             text-align: center;
         }
 
-        .resident-photo {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #F1F5F9;
-            margin-bottom: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .resident-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .resident-basic-info h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #0F172A;
-        }
-
-        .unit-number {
+        .barcode-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: #64748B;
-            font-size: 15px;
-            margin-bottom: 28px;
-        }
-
-        .resident-qr-section {
-            background: #F8FAFC;
-            width: 100%;
-            padding: 24px;
-            border-radius: 20px;
-            margin-bottom: 28px;
-        }
-
-        .qr-container {
-            background: white;
-            padding: 16px;
-            border-radius: 16px;
-            display: inline-block;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .large-qr {
-            font-size: 110px;
-            color: #0F172A;
-        }
-
-        .qr-label {
-            font-size: 12px;
-            color: #94A3B8;
-            letter-spacing: 1px;
+            margin-bottom: 32px;
             font-weight: 600;
         }
 
-        .id-details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .barcode-visual {
             width: 100%;
-            gap: 20px;
+            height: 64px;
+            background: repeating-linear-gradient(
+                90deg,
+                #1e293b,
+                #1e293b 2px,
+                #fff 2px,
+                #fff 4px,
+                #1e293b 4px,
+                #1e293b 5px,
+                #fff 5px,
+                #fff 8px,
+                #1e293b 8px,
+                #1e293b 9px
+            );
+            margin: 20px 0;
         }
 
-        .id-detail {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .id-detail .label {
-            font-size: 10px;
-            color: #94A3B8;
+        .barcode-number {
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            letter-spacing: 6px;
+            color: #1e293b;
             font-weight: 700;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .id-detail .value {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1E293B;
-        }
-
-        .id-detail .value.active {
-            color: #10B981;
         }
 
         /* Scrolled Header Optimization */
@@ -701,7 +614,8 @@
             color: white;
         }
 
-        .bookings-header.scrolled .back-btn {
+        .bookings-header.scrolled .back-btn,
+        .bookings-header.scrolled .header-action-btn {
             background: rgba(255, 255, 255, 0.15);
             color: white;
             border-color: rgba(255, 255, 255, 0.2);
@@ -724,13 +638,11 @@
     <div class="app-container">
         <!-- Header -->
         <header class="bookings-header">
-            <div class="header-left">
-                <button class="back-btn" id="bookings-back-btn">
-                    <ion-icon name="chevron-back-outline"></ion-icon>
-                </button>
-                <h1 class="header-title">Bookings</h1>
-            </div>
-            <button class="back-btn" id="qr-code-btn" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2);">
+            <a href="../index.html" class="back-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+            <h1 class="header-title">Bookings</h1>
+            <button class="header-action-btn" id="qr-code-btn">
                 <ion-icon name="qr-code-outline"></ion-icon>
             </button>
         </header>
@@ -866,16 +778,16 @@
                 <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </div>
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="window.location.href='../services.html'" style="cursor: pointer;">
                 <ion-icon name="construct"></ion-icon>
                 <span>Services</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../messages/index.html'" style="cursor: pointer;">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item">
-                <ion-icon name="person-outline"></ion-icon>
+            <div class="nav-item" onclick="window.location.href='../profile/profile.html'" style="cursor: pointer;">
+                <ion-icon name="person-circle-outline"></ion-icon>
                 <span>Profile</span>
             </div>
         </nav>
@@ -886,40 +798,11 @@
                 <button class="close-btn" id="resident-id-close-btn">
                     <ion-icon name="close-outline"></ion-icon>
                 </button>
-                <div class="resident-id-header">
-                    <div class="resident-logo">
-                        <ion-icon name="cube-outline"></ion-icon>
-                        <span>Quaynect</span>
-                    </div>
-                    <div class="id-badge">Resident</div>
-                </div>
-                
-                <div class="resident-id-body">
-                    <div class="resident-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Resident Photo">
-                    </div>
-                    <div class="resident-basic-info">
-                        <h3>Johnathan Doe</h3>
-                        <p class="unit-number">Unit 402, Building B</p>
-                    </div>
-                    
-                    <div class="resident-qr-section">
-                        <div class="qr-container">
-                            <ion-icon name="qr-code-outline" class="large-qr"></ion-icon>
-                        </div>
-                        <p class="qr-label">Scan to verify access</p>
-                    </div>
-                    
-                    <div class="id-details-grid">
-                        <div class="id-detail">
-                            <span class="label">Member Since</span>
-                            <span class="value">Jan 2024</span>
-                        </div>
-                        <div class="id-detail">
-                            <span class="label">Status</span>
-                            <span class="value active">Verified</span>
-                        </div>
-                    </div>
+                <div class="barcode-title">Resident Points ID</div>
+                <div class="barcode-visual"></div>
+                <div class="barcode-number">2938 1140 002</div>
+                <div class="barcode-footer">
+                    <p>Scan barcode for resident points<br>and service verification</p>
                 </div>
             </div>
         </div>
@@ -1120,6 +1003,42 @@
             }
 
             await loadBookings();
+
+            // Long hold "My Bookings" to hide them
+            const sectionTitles = document.querySelectorAll('.section-title');
+            let myBookingsTitle;
+            sectionTitles.forEach(title => {
+                if (title.textContent === 'My Bookings') {
+                    myBookingsTitle = title;
+                }
+            });
+
+            if (myBookingsTitle) {
+                let holdTimer;
+                const startHold = (e) => {
+                    // Prevent default to avoid selection/context menu during hold
+                    holdTimer = setTimeout(() => {
+                        myBookingsTitle.style.display = 'none';
+                        const list = document.getElementById('bookings-list');
+                        const empty = document.getElementById('bookings-empty-state');
+                        if (list) list.style.display = 'none';
+                        if (empty) empty.style.display = 'none';
+                    }, 1000); // 1.0 second hold
+                };
+                const cancelHold = () => {
+                    clearTimeout(holdTimer);
+                };
+
+                myBookingsTitle.addEventListener('touchstart', startHold);
+                myBookingsTitle.addEventListener('touchend', cancelHold);
+                myBookingsTitle.addEventListener('touchcancel', cancelHold);
+                myBookingsTitle.addEventListener('mousedown', startHold);
+                myBookingsTitle.addEventListener('mouseup', cancelHold);
+                myBookingsTitle.addEventListener('mouseleave', cancelHold);
+                
+                // Also disable context menu on this element to prevent interference on mobile
+                myBookingsTitle.addEventListener('contextmenu', e => e.preventDefault());
+            }
 
             // Category Card Interactions
             const categoryCards = document.querySelectorAll('.category-card');

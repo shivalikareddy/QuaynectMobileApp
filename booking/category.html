@@ -61,19 +61,18 @@
 
         .bookings-header .back-btn,
         .bookings-header .header-action-btn {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 24px;
+            background: #FFFFFF;
+            border: 1px solid #F1F5F9;
+            font-size: 22px;
             cursor: pointer;
-            color: white;
+            color: #64748B;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: transform 0.2s, background-color 0.2s;
             flex-shrink: 0;
             text-decoration: none;
@@ -483,7 +482,7 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 12px;
             color: var(--text-color);
@@ -698,8 +697,6 @@
             transition: color 0.3s ease;
         }
 
-        .bookings-header.scrolled .header-title {
-        }
 
         .category-content {
             padding: 88px 0 100px; /* Reduced side padding to handle chips scroll */
@@ -802,6 +799,173 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             padding: 0 var(--padding-page);
+        }
+
+        /* Filter Modal Styles */
+        .filter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            backdrop-filter: blur(2px);
+        }
+
+        .filter-modal {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px 24px 0 0;
+            padding: 24px var(--padding-page) calc(24px + env(safe-area-inset-bottom, 20px));
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .filter-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .filter-modal-header h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .filter-modal-header button {
+            background: #F3F4F6;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .filter-group {
+            margin-bottom: 24px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .sort-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .sort-chip {
+            padding: 8px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .sort-chip.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .toggle-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .toggle-option span {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        /* Switch styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #E2E8F0;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-blue);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .slider.round {
+            border-radius: 24px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .apply-filter-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 8px;
+            cursor: pointer;
         }
         @media (min-width: 768px) {
             .resources-grid {
@@ -1048,19 +1212,56 @@
                 <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </div>
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="window.location.href='../services.html'" style="cursor: pointer;">
                 <ion-icon name="construct"></ion-icon>
                 <span>Services</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../messages/index.html'" style="cursor: pointer;">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../profile/profile.html'" style="cursor: pointer;">
                 <ion-icon name="person-circle-outline"></ion-icon>
                 <span>Profile</span>
             </div>
-        </nav>
+        <!-- Filter Modal -->
+        <div class="filter-overlay" id="filter-overlay">
+            <div class="filter-modal">
+                <div class="filter-modal-header">
+                    <h4>Filter & Sort</h4>
+                    <button id="close-filter"><ion-icon name="close"></ion-icon></button>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Sort by Tier</label>
+                    <div class="sort-options" id="tier-sort-options">
+                        <button class="sort-chip" data-sort="tier-high">High to Low</button>
+                        <button class="sort-chip" data-sort="tier-low">Low to High</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Sort by Points</label>
+                    <div class="sort-options" id="points-sort-options">
+                        <button class="sort-chip" data-sort="points-high">High to Low</button>
+                        <button class="sort-chip" data-sort="points-low">Low to High</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Availability</label>
+                    <div class="toggle-option">
+                        <span>Show only available items</span>
+                        <label class="switch">
+                            <input type="checkbox" id="available-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="apply-filter-btn" id="apply-filters">Apply Filters</button>
+            </div>
+        </div>
     </div>
     <script src="../script.js"></script>
     <script>
@@ -1079,6 +1280,79 @@
             if (backBtn) {
                 backBtn.addEventListener('click', () => {
                     window.location.href = 'index.html';
+                });
+            }
+
+            // Filter Modal Logic
+            const filterBtn = document.querySelector('.filter-btn');
+            const filterOverlay = document.getElementById('filter-overlay');
+            const closeFilter = document.getElementById('close-filter');
+            const applyFiltersBtn = document.getElementById('apply-filters');
+            const sortChips = document.querySelectorAll('.sort-chip');
+            let activeSort = null;
+
+            if (filterBtn) {
+                filterBtn.addEventListener('click', () => {
+                    filterOverlay.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            if (closeFilter) {
+                closeFilter.addEventListener('click', () => {
+                    filterOverlay.style.display = 'none';
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (filterOverlay) {
+                filterOverlay.addEventListener('click', (e) => {
+                    if (e.target === filterOverlay) {
+                        filterOverlay.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            sortChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    sortChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    activeSort = chip.dataset.sort;
+                });
+            });
+
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', () => {
+                    let dataToDisplay = [...window.currentCategoryData];
+                    
+                    // Filter by availability if toggle is on
+                    const availableOnly = document.getElementById('available-toggle').checked;
+                    if (availableOnly) {
+                        dataToDisplay = dataToDisplay.filter(item => item.availability === true);
+                    }
+
+                    // Apply sorting
+                    if (activeSort) {
+                        switch (activeSort) {
+                            case 'tier-high':
+                                dataToDisplay.sort((a, b) => b.tier - a.tier);
+                                break;
+                            case 'tier-low':
+                                dataToDisplay.sort((a, b) => a.tier - b.tier);
+                                break;
+                            case 'points-high':
+                                dataToDisplay.sort((a, b) => b.points - a.points);
+                                break;
+                            case 'points-low':
+                                dataToDisplay.sort((a, b) => a.points - b.points);
+                                break;
+                        }
+                    }
+
+                    displayResources(dataToDisplay);
+                    filterOverlay.style.display = 'none';
+                    document.body.style.overflow = '';
                 });
             }
 
