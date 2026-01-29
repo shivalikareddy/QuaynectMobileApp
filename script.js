@@ -492,7 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 '.upcoming-card',
                 '.history-item',
                 '.auto-pay-card',
-                '.account-picker'
+                '.account-picker',
+                '.group-card',
+                '.event-card'
             ];
 
             const allItems = document.querySelectorAll(itemSelectors.join(', '));
