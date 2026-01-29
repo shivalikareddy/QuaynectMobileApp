@@ -3,247 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Residency App</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Messages - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
-        <header class="main-header" id="mainHeader">
-            <div class="profile-group" id="profileGroup">
-                <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Profile" class="profile-pic">
-                <div class="residency-info">
-                    <span class="label">RESIDENT</span>
-                    <span class="address">Unit 1140</span>
-                </div>
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Messages</h1>
             </div>
-
-            <div class="search-expand-container" id="searchExpandContainer">
-                <ion-icon name="search-outline" class="search-icon-fixed"></ion-icon>
-                <input type="text" placeholder="Search Quaynect..." id="headerSearchInput">
-                <button class="close-search-btn" id="closeSearchBtn">
-                    <ion-icon name="close-outline"></ion-icon>
-                </button>
-            </div>
-
-            <div class="header-actions" id="headerActions">
-                <button class="icon-btn search-btn" id="openSearchBtn">
-                    <ion-icon name="search-outline"></ion-icon>
-                </button>
-                <button class="icon-btn notif-btn" onclick="window.location.href='notifications.html'">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                    <span class="notif-badge-dot"></span>
+            <div class="header-right">
+                <button class="icon-btn">
+                    <ion-icon name="create-outline"></ion-icon>
                 </button>
             </div>
         </header>
 
-        <!-- Greeting -->
-        <section class="greeting-section">
-            <h1>Good Afternoon,<br>Laura</h1>
-            <div class="weather-widget">
-                <ion-icon name="cloud-outline" class="weather-icon"></ion-icon>
-                <span>9°C • Cloudy in Toronto</span>
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline"></ion-icon>
+                <input type="text" placeholder="Search" style="border:none; outline:none; background:transparent; width:100%; margin-left:8px; font-size:15px;">
             </div>
-        </section>
-
-        <!-- Event Card -->
-        <section class="event-card" onclick="window.location.href='events/wine-cheese-night.html'" style="cursor: pointer;">
-            <div class="event-bg"></div>
-            <div class="event-overlay">
-                <span class="event-label">COMMUNITY EVENT</span>
-                <h2>Wine & Cheese Night</h2>
-                <p class="event-details">Friday, 7:00 PM • Party Hall</p>
-                <button class="rsvp-btn">RSVP</button>
-            </div>
-        </section>
-
-        <!-- Notification Banner -->
-        <div class="notification-banner">
-            <div class="banner-content">
-                <div class="banner-icon">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                </div>
-                <span class="banner-text">Rooftop pool closed for the season</span>
-            </div>
-            <ion-icon name="chevron-forward-outline" class="chevron-right"></ion-icon>
         </div>
 
-        <!-- Dashboard Grid -->
-        <section class="dashboard-section">
-            <div class="section-header">
-                <h3>My Dashboard</h3>
-                <a href="#" class="edit-link">EDIT</a>
-            </div>
-            <div class="grid-container">
-                <!-- Digital Key -->
-                <div class="dashboard-card" data-id="card-key">
-                    <div class="icon-circle blue">
-                        <ion-icon name="key-outline"></ion-icon>
+        <!-- Groups Section -->
+        <div class="groups-section">
+            <h3 class="subsection-title">My Groups</h3>
+            <div class="groups-scroll-container">
+                <div class="group-card" onclick="window.location.href='#'">
+                    <div class="group-image-box">
+                         <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wine Club">
                     </div>
-                    <h4>Digital Key</h4>
-                    <p>Tap to unlock</p>
+                    <span class="group-name">Wine Club</span>
+                </div>
+                
+                <div class="group-card" onclick="window.location.href='#'">
+                    <div class="group-image-box">
+                         <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gym Squad">
+                    </div>
+                    <span class="group-name">Gym Squad</span>
                 </div>
 
-                <!-- Booking & Community -->
-                <div class="dashboard-card" data-id="card-booking">
-                    <div class="icon-circle light-blue">
-                        <ion-icon name="calendar-outline"></ion-icon>
+                <div class="group-card" onclick="window.location.href='#'">
+                    <div class="group-image-box">
+                        <img src="https://images.unsplash.com/photo-1581579186913-45ac3e6e3dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Bookworms">
                     </div>
-                    <h4>Booking</h4>
-                    <p>Book pool deck</p>
+                    <span class="group-name">Book Club</span>
                 </div>
 
-                <!-- Packages -->
-                <div class="dashboard-card" data-id="card-packages">
-                    <div class="icon-circle purple">
-                        <ion-icon name="cube-outline"></ion-icon>
+                 <div class="group-card" onclick="window.location.href='#'">
+                    <div class="group-image-box add-new">
+                        <ion-icon name="add-outline"></ion-icon>
                     </div>
-                    <div class="badge">3</div>
-                    <h4>Packages</h4>
-                    <p>3 items ready</p>
-                </div>
-
-                <!-- Community -->
-                <div class="dashboard-card" data-id="card-community">
-                    <div class="icon-circle purple">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </div>
-                    <h4>Community</h4>
-                    <p>Social, events & more</p>
+                    <span class="group-name">Join Group</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Extra Cards (Hidden wrapper for animation) -->
-            <div class="expandable-wrapper">
-                <div class="grid-container second-grid">
-                    <div class="dashboard-card" data-id="card-points">
-                        <div class="icon-circle green">
-                             <ion-icon name="gift-outline"></ion-icon>
-                        </div>
-                        <h4>Points</h4>
-                        <p>View rewards</p>
+        <!-- Message List -->
+        <div class="message-list">
+            
+            <!-- Chat Item -->
+            <div class="chat-row unread" onclick="window.location.href='chat.html?name=Front%20Desk%20Concierge&img=https://ui-avatars.com/api/?name=Concierge&background=0D8ABC&color=fff'">
+                <div class="chat-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Concierge&background=0D8ABC&color=fff">
+                    <div class="online-dot"></div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Front Desk Concierge</span>
+                        <span class="chat-time">2m</span>
                     </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Your package has arrived at the front desk.</span>
+                        <div class="unread-dot"></div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="dashboard-card" data-id="card-payments">
-                        <div class="icon-circle orange">
-                            <ion-icon name="card-outline"></ion-icon>
-                        </div>
-                        <h4>Payments</h4>
-                        <p>View history</p>
+            <!-- Chat Item -->
+            <div class="chat-row unread" onclick="window.location.href='chat.html?name=Sarah%20Wilson&img=https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100'">
+                <div class="chat-avatar">
+                   <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Sarah Wilson</span>
+                        <span class="chat-time">14m</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Are you going to the wine night?</span>
+                        <div class="unread-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Item -->
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Mike%20Chen&img=https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100'">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Mike Chen</span>
+                        <span class="chat-time">2h</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Thanks for the key!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Item -->
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Sunday%20Brunch%20Group&img=https://ui-avatars.com/api/?name=Brunch&background=random'">
+                <div class="chat-avatar group">
+                    <div class="group-avatars">
+                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100">
+                         <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&h=100">
+                    </div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Sunday Brunch Group</span>
+                        <span class="chat-time">Yesterday</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Alice: I'll bring the champagne! 🥂</span>
+                    </div>
+                </div>
+            </div>
+             <!-- Chat Item -->
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Maintenance&img=https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=100&h=100'">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=100&h=100">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Maintenance</span>
+                        <span class="chat-time">Mon</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Request #4022 marked as resolved.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Chat Items -->
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Jessica%20Lee&img=https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100'">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Jessica Lee</span>
+                        <span class="chat-time">Mon</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Did you see the new schedule?</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Alex%20Rivera&img=https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100'">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Alex Rivera</span>
+                        <span class="chat-time">Sun</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Let's meet at the lobby.</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Expand Button -->
-            <div class="expand-dashboard">
-                <button class="expand-btn" aria-label="Show more">
-                    <ion-icon name="chevron-down-outline"></ion-icon>
-                </button>
-            </div>
-        </section>
-
-        <!-- Live Occupancy Section -->
-        <section class="section-container" id="occupancy-section" style="margin-bottom: 80px;">
-            <h3>Live Occupancy</h3>
-            <div class="occupancy-grid">
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Gym/ Fitness Room</h4>
-                            <div class="live-count">
-                                <span class="count-num">42</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="75">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="75, 100" />
-                            </svg>
-                            <span class="percentage">75%</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-pill busy">Busy</span>
-                        <div class="trend-text">
-                            <ion-icon name="trending-up-outline"></ion-icon>
-                            <span>Peak 6PM</span>
-                        </div>
-                    </div>
+            <div class="chat-row" onclick="window.location.href='chat.html?name=Property%20Manager&img=https://ui-avatars.com/api/?name=Property+Manager&background=random'">
+                <div class="chat-avatar">
+                     <img src="https://ui-avatars.com/api/?name=Property+Manager&background=random">
                 </div>
-
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Work Lounge</h4>
-                            <div class="live-count">
-                                <span class="count-num">12</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="25">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="25, 100" />
-                            </svg>
-                            <span class="percentage">25%</span>
-                        </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Property Manager</span>
+                        <span class="chat-time">Last Week</span>
                     </div>
-                    <div class="status-row">
-                        <span class="status-pill quiet">Quiet</span>
-                        <div class="trend-text">
-                            <ion-icon name="time-outline"></ion-icon>
-                            <span>Quiet now</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detailed-occupancy-card">
-                    <div class="occupancy-main">
-                        <div class="occupancy-labels">
-                            <h4>Rooftop Pool</h4>
-                            <div class="live-count">
-                                <span class="count-num">0</span>
-                                <span class="count-label">present</span>
-                            </div>
-                        </div>
-                        <div class="progress-circle" data-percentage="0">
-                            <svg viewBox="0 0 36 36">
-                                <path class="bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="meter" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100" />
-                            </svg>
-                            <span class="percentage">0%</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-pill closed">Closed</span>
-                        <div class="trend-text">
-                            <ion-icon name="cloudy-outline"></ion-icon>
-                            <span>Cloudy Day</span>
-                        </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Notices regarding elevator maintenance</span>
                     </div>
                 </div>
             </div>
-        </section>
+             <div class="chat-row" onclick="window.location.href='chat.html?name=Gym%20Buddies&img=https://ui-avatars.com/api/?name=Gym&background=random'">
+                <div class="chat-avatar group">
+                     <div class="group-avatars">
+                         <img src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?auto=format&fit=crop&w=100&h=100">
+                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100">
+                    </div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Gym Buddies</span>
+                        <span class="chat-time">2 Weeks Ago</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Leg day tomorrow? 💪</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
-            <div class="nav-item active">
-                <ion-icon name="home"></ion-icon>
+            <div class="nav-item" onclick="window.location.href='../index.html'">
+                <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='../services.html'">
                 <ion-icon name="construct-outline"></ion-icon>
                 <span>Services</span>
             </div>
-            <div class="nav-item" onclick="window.location.href='messages/index.html'">
-                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            <div class="nav-item active">
+                <ion-icon name="chatbubble-ellipses"></ion-icon>
                 <span>Messages</span>
             </div>
             <div class="nav-item">
@@ -252,6 +237,5 @@
             </div>
         </nav>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
