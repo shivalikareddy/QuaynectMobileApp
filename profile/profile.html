@@ -18,7 +18,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 402px;
+            max-width: 480px;
             z-index: 100;
             padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 16px;
             display: flex;
@@ -52,7 +52,7 @@
 
         .bookings-header .header-title {
             color: #1A1C1E;
-            font-size: 18px;
+            font-size: 28px;
             font-weight: 700;
             text-align: left;
             flex-grow: 1;
@@ -74,6 +74,11 @@
             text-align: center;
         }
 
+        .avatar-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
         .profile-avatar {
             width: 100px;
             height: 100px;
@@ -82,7 +87,26 @@
             object-position: top center;
             border: 4px solid white;
             box-shadow: var(--shadow-md);
-            margin-bottom: 16px;
+            margin-bottom: 0px;
+        }
+
+        .edit-avatar-btn {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 32px;
+            height: 32px;
+            background: #a2a3a5;
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            cursor: pointer;
+            z-index: 2;
         }
 
         .profile-name {
@@ -112,7 +136,7 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
             text-decoration: none;
         }
 
@@ -140,6 +164,161 @@
         .key-info p {
             font-size: 12px;
             opacity: 0.9;
+        }
+
+        /* Barcode Styles */
+        .barcode-section {
+            padding: 0 var(--padding-page);
+            margin-bottom: 32px;
+        }
+
+        .barcode-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .expand-barcode-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F3F4F6;
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .expand-barcode-btn:active {
+            transform: scale(0.9);
+            background: #E5E7EB;
+        }
+
+        /* Overlay Styles */
+        .barcode-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .barcode-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .enlarged-barcode-container {
+            background: white;
+            padding: 40px 24px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .barcode-overlay.active .enlarged-barcode-container {
+            transform: scale(1);
+        }
+
+        .enlarged-barcode-visual {
+            width: 100%;
+            height: 120px;
+            background: repeating-linear-gradient(
+                90deg,
+                #1A1C1E,
+                #1A1C1E 3px,
+                #fff 3px,
+                #fff 7px,
+                #1A1C1E 7px,
+                #1A1C1E 9px,
+                #fff 9px,
+                #fff 13px,
+                #1A1C1E 13px,
+                #1A1C1E 14px,
+                #fff 14px,
+                #fff 18px
+            );
+            margin: 20px 0;
+        }
+
+        .close-overlay-btn {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1A1C1E;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .barcode-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .barcode-visual {
+            width: 100%;
+            height: 64px;
+            background: repeating-linear-gradient(
+                90deg,
+                #1A1C1E,
+                #1A1C1E 2px,
+                #fff 2px,
+                #fff 5px,
+                #1A1C1E 5px,
+                #1A1C1E 6px,
+                #fff 6px,
+                #fff 10px,
+                #1A1C1E 10px,
+                #1A1C1E 11px,
+                #fff 11px,
+                #fff 13px
+            );
+        }
+
+        .barcode-number {
+            margin-top: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #1A1C1E;
+            font-weight: 600;
         }
 
         /* Lists */
@@ -245,6 +424,142 @@
             width: calc(100% - 40px);
             cursor: pointer;
         }
+
+        /* Pop-down styles for account settings */
+        .list-item-container {
+            border-bottom: 1px solid #F3F4F6;
+        }
+        .list-item-container:last-child {
+            border-bottom: none;
+        }
+        .list-item-container .list-item {
+            border-bottom: none;
+        }
+        .item-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #F9FAFB;
+            padding: 0 20px 0 76px; /* Start with indented left padding to avoid sliding */
+        }
+        .list-item-container.active {
+            background: #F9FAFB;
+        }
+        .list-item-container.active .item-dropdown {
+            max-height: 250px;
+            padding-bottom: 20px;
+        }
+        .list-item-container .item-chevron {
+            transition: transform 0.3s ease;
+        }
+        .list-item-container.active .item-chevron {
+            transform: rotate(90deg);
+            color: #3B82F6;
+        }
+        .dropdown-text {
+            font-size: 13px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        .dropdown-text strong {
+            color: #1A1C1E;
+            font-weight: 600;
+        }
+        .dropdown-content {
+            padding-top: 4px;
+        }
+
+        /* Dark mode for header */
+        .dark .bookings-header {
+            background: rgba(17, 24, 39, 0.9);
+            border-color: #374151;
+        }
+        .dark .bookings-header .back-btn,
+        .dark .bookings-header .header-action-btn {
+            background: #1F2937;
+            border-color: #374151;
+            color: #F8F9FB;
+        }
+        .dark .bookings-header .header-title {
+            color: #F8F9FB;
+        }
+        
+        .dark .profile-container {
+            background-color: var(--background-dark);
+        }
+        
+        .dark .profile-name {
+            color: #F8F9FB;
+        }
+        
+        .dark .settings-list {
+            background: #1F2937;
+            border-color: #374151;
+        }
+        
+        .dark .list-item {
+            border-color: #374151;
+            color: #F8F9FB;
+        }
+        
+        .dark .item-dropdown {
+            background: #111827;
+        }
+        
+        .dark .dropdown-text {
+            color: #94A3B8;
+        }
+        
+        .dark .dropdown-text strong {
+            color: #F8F9FB;
+        }
+
+        .dark .section-title {
+            color: #F8F9FB;
+        }
+
+        .dark .barcode-card {
+            background: #1F2937;
+            border-color: #374151;
+        }
+
+        .dark .barcode-visual {
+            filter: invert(1) grayscale(1) brightness(1.5);
+        }
+
+        .dark .barcode-number {
+            color: #F8F9FB;
+        }
+
+        .dark .enlarged-barcode-container {
+            background: #1F2937;
+            border: 1px solid #374151;
+        }
+
+        .dark .enlarged-barcode-visual {
+            filter: invert(1) grayscale(1) brightness(1.5);
+        }
+
+        .dark .expand-barcode-btn {
+            background: #374151;
+            color: #F8F9FB;
+        }
+
+        .dark .close-overlay-btn {
+            background: #F8F9FB;
+            color: #1A1C1E;
+        }
+
+        /* Adjustments for taller screens (iPhone 17 Pro aspect ratio) */
+        @media screen and (max-aspect-ratio: 9/19) {
+            .app-container {
+                padding-bottom: calc(96px + env(safe-area-inset-bottom, 34px));
+            }
+            .profile-container {
+                padding-top: calc(100px + env(safe-area-inset-top, 0px));
+            }
+        }
     </style>
 </head>
 <body>
@@ -255,7 +570,7 @@
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
             <h1 class="header-title">My Profile</h1>
-            <button class="header-action-btn">
+            <button class="header-action-btn" onclick="alert('This feature is coming soon!')">
                 <ion-icon name="settings-outline"></ion-icon>
             </button>
         </header>
@@ -263,14 +578,19 @@
         <div class="profile-container">
             <!-- Profile Hero -->
             <section class="profile-hero">
-                <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="profile-avatar laura-photo">
+                <div class="avatar-wrapper">
+                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="profile-avatar laura-photo">
+                    <div class="edit-avatar-btn">
+                        <ion-icon name="camera"></ion-icon>
+                    </div>
+                </div>
                 <h2 class="profile-name">Laura Morris</h2>
                 <p class="profile-building">Block 1B • Unit 1140</p>
             </section>
 
             <!-- Digital Key Quick Link -->
             <section class="digital-key-section">
-                <a href="#" class="key-card">
+                <a href="../digital-key/index.html" class="key-card">
                     <div class="key-icon">
                         <ion-icon name="key-outline"></ion-icon>
                     </div>
@@ -282,26 +602,57 @@
                 </a>
             </section>
 
+            <!-- Resident Points Barcode -->
+            <section class="barcode-section">
+                <div class="barcode-card">
+                    <div class="expand-barcode-btn" onclick="toggleBarcodeOverlay(true)">
+                        <ion-icon name="expand-outline"></ion-icon>
+                    </div>
+                    <h4 class="barcode-title">Resident Points ID</h4>
+                    <div class="barcode-visual"></div>
+                    <div class="barcode-number">2938 1140 002</div>
+                </div>
+            </section>
+
             <!-- Household Members -->
             <div class="section-header">
                 <h3 class="section-title">Household Members</h3>
             </div>
             <div class="settings-list">
-                <div class="list-item">
-                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="member-avatar laura-photo">
-                    <div class="item-label">
-                        Laura Morris
-                        <div class="member-role">Primary Resident</div>
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <img src="https://res.cloudinary.com/dflkg5tne/image/upload/c_fill,g_face,z_1.2/v1768349999/pexels-ibidsy-14634926_qjxwgl.jpg" alt="Laura Morris" class="member-avatar laura-photo">
+                        <div class="item-label">
+                            Laura Morris
+                            <div class="member-role">Primary Resident</div>
+                        </div>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
                     </div>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                    <div class="item-dropdown">
+                        <div class="dropdown-content">
+                            <p class="dropdown-text"><strong>Relationship:</strong> Self</p>
+                            <p class="dropdown-text"><strong>Move-in Date:</strong> June 12, 2023</p>
+                            <p class="dropdown-text"><strong>Access Level:</strong> Full Administrative Access</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="list-item">
-                    <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768350001/AdobeStock_514723373_dtpnjk.jpg" alt="Ross Larson" class="member-avatar">
-                    <div class="item-label">
-                        Ross Larson
-                        <div class="member-role">Resident</div>
+
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <img src="https://res.cloudinary.com/dflkg5tne/image/upload/v1768350001/AdobeStock_514723373_dtpnjk.jpg" alt="Ross Larson" class="member-avatar">
+                        <div class="item-label">
+                            Ross Larson
+                            <div class="member-role">Resident</div>
+                        </div>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
                     </div>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                    <div class="item-dropdown">
+                        <div class="dropdown-content">
+                            <p class="dropdown-text"><strong>Relationship:</strong> Partner</p>
+                            <p class="dropdown-text"><strong>Move-in Date:</strong> June 12, 2023</p>
+                            <p class="dropdown-text"><strong>Access Level:</strong> Standard Residential Access</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -310,34 +661,57 @@
                 <h3 class="section-title">Account Settings</h3>
             </div>
             <div class="settings-list">
-                <a href="#" class="list-item">
-                    <div class="item-icon light-blue">
-                        <ion-icon name="calendar-outline"></ion-icon>
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <div class="item-icon light-blue">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </div>
+                        <span class="item-label">Personal Information</span>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
                     </div>
-                    <span class="item-label">Personal Information</span>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
-                </a>
-                <a href="#" class="list-item">
-                    <div class="item-icon purple">
-                        <ion-icon name="cube-outline"></ion-icon>
+                    <div class="item-dropdown">
+                        <p class="dropdown-text">Update your name, email address, and phone number to stay connected with Block 1B management.</p>
                     </div>
-                    <span class="item-label">Notifications</span>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
-                </a>
-                <a href="#" class="list-item">
-                    <div class="item-icon blue">
-                        <ion-icon name="key-outline"></ion-icon>
+                </div>
+
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <div class="item-icon purple">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                        <span class="item-label">Notifications</span>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
                     </div>
-                    <span class="item-label">Privacy & Security</span>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
-                </a>
-                <a href="#" class="list-item">
-                    <div class="item-icon light-blue">
-                        <ion-icon name="help-buoy-outline"></ion-icon>
+                    <div class="item-dropdown">
+                        <p class="dropdown-text">Manage your alert preferences for community news, package deliveries, and building announcements.</p>
                     </div>
-                    <span class="item-label">Support</span>
-                    <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
-                </a>
+                </div>
+
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <div class="item-icon blue">
+                            <ion-icon name="key-outline"></ion-icon>
+                        </div>
+                        <span class="item-label">Privacy & Security</span>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                    </div>
+                    <div class="item-dropdown">
+                        <p class="dropdown-text">Change your password and manage two-factor authentication to keep your account secure.</p>
+                    </div>
+                </div>
+
+                <div class="list-item-container">
+                    <div class="list-item">
+                        <div class="item-icon light-blue">
+                            <ion-icon name="help-buoy-outline"></ion-icon>
+                        </div>
+                        <span class="item-label">Support</span>
+                        <ion-icon name="chevron-forward-outline" class="item-chevron"></ion-icon>
+                    </div>
+                    <div class="item-dropdown">
+                        <p class="dropdown-text">Access FAQs and contact our support team for any help with your unit or the Quaynect platform.</p>
+                    </div>
+                </div>
             </div>
 
             <button class="logout-btn">Log Out</button>
@@ -350,11 +724,11 @@
                 <ion-icon name="home-outline"></ion-icon>
                 <span>Home</span>
             </a>
-            <div class="nav-item">
+            <a href="../services.html" class="nav-item">
                 <ion-icon name="construct-outline"></ion-icon>
                 <span>Services</span>
-            </div>
-            <div class="nav-item">
+            </a>
+            <div class="nav-item" onclick="alert('This feature is coming soon!')">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span>Messages</span>
             </div>
@@ -363,7 +737,52 @@
                 <span>Profile</span>
             </div>
         </nav>
+
+        <!-- Barcode Expansion Overlay -->
+        <div id="barcodeOverlay" class="barcode-overlay" onclick="toggleBarcodeOverlay(false)">
+            <div class="close-overlay-btn">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <div class="enlarged-barcode-container" onclick="event.stopPropagation()">
+                <h4 class="barcode-title">Resident Points ID</h4>
+                <div class="enlarged-barcode-visual"></div>
+                <div class="barcode-number">2938 1140 002</div>
+                <p style="margin-top: 24px; font-size: 14px; color: var(--text-secondary);">Show this code to collect or redeem points</p>
+            </div>
+        </div>
     </div>
+    <script>
+        // Toggle Account Settings pop-downs
+        const settingContainers = document.querySelectorAll('.list-item-container');
+        settingContainers.forEach(container => {
+            const header = container.querySelector('.list-item');
+            header.addEventListener('click', () => {
+                // Close other items
+                settingContainers.forEach(other => {
+                    if (other !== container) {
+                        other.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                container.classList.toggle('active');
+            });
+        });
+
+        function toggleBarcodeOverlay(show) {
+            const overlay = document.getElementById('barcodeOverlay');
+            if (show) {
+                overlay.style.display = 'flex';
+                setTimeout(() => overlay.classList.add('active'), 10);
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+    </script>
     <script src="../script.js"></script>
 </body>
 </html>
