@@ -1,1 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Messages - Quaynect</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <button class="back-btn" onclick="history.back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <h1 class="header-title">Messages</h1>
+            <div class="header-action-placeholder">
+                <button class="header-action-btn">
+                    <ion-icon name="create-outline"></ion-icon>
+                </button>
+            </div>
+        </header>
 
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <input type="text" placeholder="Search chats and groups">
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="notification-tabs">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="groups">Groups</button>
+            <button data-filter="residents">Residents</button>
+            <button data-filter="maintenance">Maintenance</button>
+        </div>
+
+        <!-- Chat List -->
+        <section class="message-list">
+            <!-- Maintenance (Pinned/Top) -->
+            <div class="chat-row" data-type="maintenance">
+                <div class="chat-avatar">
+                    <div class="notif-icon-circle blue">
+                        <ion-icon name="build-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Maintenance Support</span>
+                        <span class="chat-time">10:45 AM</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Your sink repair is scheduled for tomorrow at 2 PM.</span>
+                        <div class="unread-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Chat -->
+            <div class="chat-row" data-type="groups">
+                <div class="chat-avatar">
+                    <div class="group-avatars">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=100&h=100" style="left: 0; top: 0;">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=100&h=100" style="right: 0; bottom: 0;">
+                    </div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">GreenThumb Club 🌿</span>
+                        <span class="chat-time">9:20 AM</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Sarah: Does anyone have a spare trowel?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Residents -->
+            <div class="chat-row unread" data-type="residents">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100" alt="Laura Morris">
+                    <div class="online-dot"></div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Laura Morris (Unit 1140)</span>
+                        <span class="chat-time">Yesterday</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Hey! I left a package at your door by mistake.</span>
+                        <div class="unread-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-row" data-type="residents">
+                <div class="chat-avatar">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100" alt="Alex Rivera">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Alex Rivera</span>
+                        <span class="chat-time">Tue</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">Are you coming to the Wine & Cheese night?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Groups -->
+            <div class="chat-row" data-type="groups">
+                <div class="chat-avatar">
+                    <div class="notif-icon-circle purple">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="chat-content">
+                    <div class="chat-header">
+                        <span class="chat-name">Gym Buddies 🏋️‍♂️</span>
+                        <span class="chat-time">Mon</span>
+                    </div>
+                    <div class="chat-message">
+                        <span class="msg-preview">John: New benches finally arrived!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='../index.html'">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../services.html'">
+                <ion-icon name="construct-outline"></ion-icon>
+                <span>Services</span>
+            </div>
+            <div class="nav-item active">
+                <ion-icon name="chatbubble-ellipses"></ion-icon>
+                <span>Messages</span>
+            </div>
+            <div class="nav-item" onclick="window.location.href='../profile/profile.html'">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>Profile</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Simple filter logic
+        const tabs = document.querySelectorAll('.notification-tabs button');
+        const rows = document.querySelectorAll('.chat-row');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const filter = tab.getAttribute('data-filter');
+                
+                rows.forEach(row => {
+                    if (filter === 'all' || row.getAttribute('data-type') === filter) {
+                        row.style.display = 'flex';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
